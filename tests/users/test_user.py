@@ -1,9 +1,9 @@
 from dataclasses import replace
 from unittest import TestCase
-import uuid
 
 from users.password import Password
 from users.user import User
+from users.user_id import UserID
 from users.user_name import UserName
 
 
@@ -23,7 +23,7 @@ class TestUser(TestCase):
         assert a_user != another_user
 
     def test_two_variables_with_same_values_should_be_equal(self):
-        an_id = uuid.uuid4()
+        an_id = UserID()
         a_user = User(
             username=UserName('Maria'),
             password=Password('uselesspassword'),
