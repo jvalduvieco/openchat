@@ -25,8 +25,7 @@ class TestUser(TestCase):
         assert a_user != another_user
 
     def test_two_variables_with_same_values_should_be_equal(self):
-        an_id=uuid.uuid4()
+        an_id = uuid.uuid4()
         a_user = User(username='Maria', password='uselesspassword', about='About Maria', ID=an_id)
         another_user = User(username='Maria', password='uselesspassword', about='About Maria', ID=an_id)
         assert a_user == another_user
-
