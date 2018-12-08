@@ -6,7 +6,7 @@ from users.user_name import UserName
 
 
 @dataclass(frozen=True)
-class User:
+class RegisterUser:
     username: UserName
     password: Password
     about: str
