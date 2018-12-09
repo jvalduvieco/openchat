@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from tests.fixtures.user import create_maria
+from tests.fixtures.user import create_maria, maria
 from users.query_user_by_username import QueryUserByUserName
 from infrastructure.users.users_repository_in_memory import InMemoryUsersRepository
 from users.user_registrator import UserRegistrator, DuplicatedUserName
