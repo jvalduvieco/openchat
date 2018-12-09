@@ -7,6 +7,7 @@ from posts.post_id import PostID
 from tests.fixtures.time import a_perfect_day_and_time
 from tests.fixtures.user import maria
 from users.query_user_by_id import QueryUserByID
+from users.user_id import UserID
 
 
 class TestCreatePost(TestCase):
@@ -20,7 +21,10 @@ class TestCreatePost(TestCase):
         assert command.created_at == created_post.created_at
 
     def test_should_throw_an_exception_on_inexistent_user(self):
-        command = CreatePost(post_id=PostID(), user_id=maria().ID, text='', created_at=a_perfect_day_and_time())
+        command = CreatePost(post_id=PostID(),
+                             user_id=UserID('fc673127-c5b9-4128-9015-2bbc31163df1'),
+                             text='',
+                             created_at=a_perfect_day_and_time())
         post_creator = PostCreator(QueryUserByID(InMemoryUsersRepository([maria()])))
         with self.assertRaises(UnkownUserID):
             post_creator.execute(command)
