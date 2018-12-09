@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from parameterized import parameterized
 
-from tests.users.fixtures.user import maria
+from tests.fixtures.user import maria
 from users.users_repository import UsersRepository
 from infrastructure.users.users_repository_in_memory import InMemoryUsersRepository
 

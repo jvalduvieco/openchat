@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from tests.users.fixtures.user import maria, create_maria
+from tests.fixtures.user import create_maria
 from users.query_user_by_username import QueryUserByUserName
-from users.user_registrator import UserRegistrator
 from infrastructure.users.users_repository_in_memory import InMemoryUsersRepository
+from users.user_registrator import UserRegistrator, DuplicatedUserName
 
 
 class TestRegisterUser(TestCase):
@@ -15,5 +15,5 @@ class TestRegisterUser(TestCase):
 
     def test_should_throw_an_exception_on_duplicate_username(self):
         user_registrator = UserRegistrator(QueryUserByUserName(InMemoryUsersRepository([maria()])))
-        with self.assertRaises(ValueError):
+        with self.assertRaises(DuplicatedUserName):
             user_registrator.execute(create_maria())
