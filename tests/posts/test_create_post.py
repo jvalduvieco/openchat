@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from infrastructure.users.users_repository_in_memory import InMemoryUsersRepository
 from posts.create_post_command import CreatePost
-from posts.post_creator import PostCreator
+from posts.post_creator import PostCreator, UnkownUserID
 from posts.post_id import PostID
 from tests.fixtures.time import a_perfect_day_and_time
 from tests.fixtures.user import maria
@@ -18,3 +18,9 @@ class TestCreatePost(TestCase):
         assert command.user_id == created_post.user_id
         assert command.text == created_post.text
         assert command.created_at == created_post.created_at
+
+    def test_should_throw_an_exception_on_inexistent_user(self):
+        command = CreatePost(post_id=PostID(), user_id=maria().ID, text='', created_at=a_perfect_day_and_time())
+        post_creator = PostCreator(QueryUserByID(InMemoryUsersRepository([maria()])))
+        with self.assertRaises(UnkownUserID):
+            post_creator.execute(command)
