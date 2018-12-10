@@ -4,7 +4,7 @@ from users.relationship import Relationship
 from users.user_id import UserID
 
 
-class TestUser(TestCase):
+class TestRelationship(TestCase):
     def test_should_create_a_relationship(self):
         relationship = Relationship(follower_id=UserID('251c6773-18fb-4e83-b19d-5fe9e14aede8'),
                                     followee_id=UserID('2add0450-dbce-4bea-ae48-051d438f1391'))
