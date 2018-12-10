@@ -5,7 +5,7 @@ from posts.create_post_command import CreatePost
 from posts.post_creator import PostCreator, UnkownUserID
 from posts.post_id import PostID
 from tests.fixtures.time import a_perfect_day_and_time
-from tests.fixtures.user import maria
+from tests.fixtures.users import maria
 from users.query_user_by_id import QueryUserByID
 from users.user_id import UserID
 
