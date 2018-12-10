@@ -1,5 +1,3 @@
-from uuid import uuid4
-
 from users.password import Password
 from users.register_user_command import RegisterUser
 from users.user import User

@@ -17,5 +17,3 @@ class UsersRepository(abc.ABC):
     @abc.abstractmethod
     def save(self, user: User) -> None:
         pass
-
-

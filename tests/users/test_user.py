@@ -16,11 +16,11 @@ class TestUser(TestCase):
 
     def test_should_create_a_copy_with_new_values(self):
         a_user = User(username=UserName('Maria'), password=Password('uselesspassword'), about='About Maria')
-        another_user = replace(a_user, password=Password('thispasswordisuselesstoo'))
-        assert a_user.username == another_user.username
-        assert a_user.about == another_user.about
-        assert another_user.password.contents == 'thispasswordisuselesstoo'
-        assert a_user != another_user
+        user_with_password_changed = replace(a_user, password=Password('thispasswordisuselesstoo'))
+        assert a_user.username == user_with_password_changed.username
+        assert a_user.about == user_with_password_changed.about
+        assert user_with_password_changed.password.contents == 'thispasswordisuselesstoo'
+        assert a_user != user_with_password_changed
 
     def test_two_variables_with_same_values_should_be_equal(self):
         an_id = UserID()
