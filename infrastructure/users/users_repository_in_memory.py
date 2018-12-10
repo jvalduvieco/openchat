@@ -22,3 +22,6 @@ class InMemoryUsersRepository(UsersRepository):
     def save(self, user: User) -> None:
         self.users_by_username[user.username.contents] = user
         self.users_by_id[user.ID.contents] = user
+
+    def all(self):
+        return [user for (key, user) in self.users_by_id.items()]

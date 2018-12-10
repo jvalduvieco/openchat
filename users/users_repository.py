@@ -17,3 +17,7 @@ class UsersRepository(abc.ABC):
     @abc.abstractmethod
     def save(self, user: User) -> None:
         pass
+
+    @abc.abstractmethod
+    def all(self):
+        pass
