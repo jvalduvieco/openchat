@@ -1,5 +1,6 @@
 from users.password import Password
 from users.register_user_command import RegisterUser
+from users.relationship import Relationship
 from users.user import User
 from users.user_id import UserID
 from users.user_name import UserName
@@ -24,6 +25,11 @@ def create_maria() -> RegisterUser:
                         username=UserName('Maria'),
                         password=Password('a_password'),
                         about='About Maria')
+
+
+def bob_follows_maria():
+    return Relationship(follower_id=bob().ID,
+                        followee_id=maria().ID)
 
 
 def inexistent_user_id():

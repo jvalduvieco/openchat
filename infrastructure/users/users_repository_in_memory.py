@@ -9,7 +9,7 @@ class InMemoryUsersRepository(UsersRepository):
         if initial_users is None:
             initial_users = []
         self.users_by_username = {}
-        self.users_by_user_id = {}
+        self.users_by_id = {}
         for user in initial_users:
             self.save(user)
 
@@ -17,8 +17,8 @@ class InMemoryUsersRepository(UsersRepository):
         return self.users_by_username.get(username.contents, None)
 
     def by_id(self, user_id: UserID) -> User:
-        return self.users_by_user_id.get(user_id.contents, None)
+        return self.users_by_id.get(user_id.contents, None)
 
     def save(self, user: User) -> None:
         self.users_by_username[user.username.contents] = user
-        self.users_by_user_id[user.ID.contents] = user
+        self.users_by_id[user.ID.contents] = user
