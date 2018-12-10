@@ -1,3 +1,4 @@
+from users.exceptions import UnkownUser, InvalidCredentials
 from users.login_user_command import LoginUser
 from users.query_user_by_username import QueryUserByUserName
 
@@ -12,11 +13,3 @@ class UserLoginByUserNameAndPassword(object):
             raise UnkownUser('User %s does not exist' % command.username.contents)
         if command.password != user.password:
             raise InvalidCredentials('Credentials for user %s do not match' % command.username.contents)
-
-
-class UnkownUser(ValueError):
-    pass
-
-
-class InvalidCredentials(ValueError):
-    pass

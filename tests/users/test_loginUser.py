@@ -2,7 +2,8 @@ from unittest import TestCase
 
 from infrastructure.users.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.user import maria
-from users.login_by_username_and_password import UserLoginByUserNameAndPassword, UnkownUser, InvalidCredentials
+from users.login_by_username_and_password import UserLoginByUserNameAndPassword
+from users.exceptions import UnkownUser, InvalidCredentials
 from users.login_user_command import LoginUser
 from users.password import Password
 from users.query_user_by_username import QueryUserByUserName

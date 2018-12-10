@@ -7,17 +7,18 @@ from users.users_repository import UsersRepository
 
 
 class InMemoryUsersRepository(UsersRepository):
-    users_by_username: {}
-    users_by_user_id: {}
-
-    def __init__(self, initial_users: List[User] = []):
-        self.users_by_username = {user.username.contents: user for user in initial_users}
-        self.users_by_user_id = {user.ID.contents: user for user in initial_users}
+    def __init__(self, initial_users=None):
+        if initial_users is None:
+            initial_users = []
+        self.users_by_username = {}
+        self.users_by_user_id = {}
+        for user in initial_users:
+            self.save(user)
 
     def by_username(self, username: UserName) -> User:
         return self.users_by_username.get(username.contents, None)
 
-    def by_id(self, user_id: UserID):
+    def by_id(self, user_id: UserID) -> User:
         return self.users_by_user_id.get(user_id.contents, None)
 
     def save(self, user: User) -> None:
