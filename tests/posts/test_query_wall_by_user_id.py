@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from infrastructure.posts.posts_repository_in_memory import InMemoryPostsRepository
 from infrastructure.users.users_repository_in_memory import InMemoryUsersRepository
-from users.query_relationships_by_followee_id import QueryRelationshipsByFolloweeID
+from users.query_relationships_by_followee_id import QueryFollowersByFolloweeID
 from posts.query_wall_by_user_id import QueryWallByUserID
 from posts.wall_by_user_id import WallByUserID
 from tests.fixtures.posts import a_post_by_maria, a_post_by_bob, another_post_by_maria
@@ -18,7 +18,7 @@ class TestCreatePost(TestCase):
         posts_by_user_id = QueryWallByUserID(
             QueryUserByID(InMemoryUsersRepository([maria()])),
             InMemoryPostsRepository([a_post_by_maria(), a_post_by_bob(), another_post_by_maria()]),
-            QueryRelationshipsByFolloweeID(InMemoryFollowersRepository([bob_follows_maria()]))
+            QueryFollowersByFolloweeID(InMemoryFollowersRepository([bob_follows_maria()]))
         )
 
         post_list = posts_by_user_id.execute(query)
@@ -33,7 +33,7 @@ class TestCreatePost(TestCase):
         posts_by_user_id = QueryWallByUserID(
             QueryUserByID(InMemoryUsersRepository([maria()])),
             InMemoryPostsRepository([a_post_by_maria(), a_post_by_bob(), another_post_by_maria()]),
-            QueryRelationshipsByFolloweeID(InMemoryFollowersRepository([bob_follows_maria()]))
+            QueryFollowersByFolloweeID(InMemoryFollowersRepository([bob_follows_maria()]))
         )
         with self.assertRaises(UnknownUser):
             posts_by_user_id.execute(query)
