@@ -1,4 +1,4 @@
-class UnkownUser(ValueError):
+class UnknownUser(ValueError):
     pass
 
 
