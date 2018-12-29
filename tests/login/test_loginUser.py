@@ -1,15 +1,15 @@
 from unittest import TestCase
 
+from domain.login.login_user_command import LoginUser
+from domain.users.exceptions import UnknownUser, InvalidCredentials
+from domain.users.password import Password
+from domain.users.query_user_by_username import QueryUserByUserName
+from domain.users.user_name import UserName
 from infrastructure.clock.fake_clock import FakeClock
 from infrastructure.repositories.users.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.time import a_perfect_day_and_time
 from tests.fixtures.users import maria
-from login.login_by_username_and_password import UserLoginByUserNameAndPassword
-from users.exceptions import UnknownUser, InvalidCredentials
-from login.login_user_command import LoginUser
-from users.password import Password
-from users.query_user_by_username import QueryUserByUserName
-from users.user_name import UserName
+from domain.login.login_by_username_and_password import UserLoginByUserNameAndPassword
 
 
 class TestLoginUser(TestCase):

@@ -1,8 +1,8 @@
 import uuid
 from dataclasses import dataclass, field
 
-from users.password import Password
-from users.user_name import UserName
+from domain.users.password import Password
+from domain.users.user_name import UserName
 
 
 @dataclass(frozen=True)

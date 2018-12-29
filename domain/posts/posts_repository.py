@@ -1,8 +1,8 @@
 import abc
 from typing import List
 
-from posts.post import Post
-from users.user_id import UserID
+from domain.posts.post import Post
+from domain.users.user_id import UserID
 
 
 class PostsRepository(abc.ABC):

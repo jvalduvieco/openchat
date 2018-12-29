@@ -1,6 +1,6 @@
-from posts.create_post_command import CreatePost
-from users.query_user_by_id import QueryUserByID
-from posts.post import Post
+from domain.posts.create_post_command import CreatePost
+from domain.posts.post import Post
+from domain.users.query_user_by_id import QueryUserByID
 
 
 class UnkownUserID(ValueError):

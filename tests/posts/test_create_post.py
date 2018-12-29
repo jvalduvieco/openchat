@@ -1,13 +1,13 @@
 from unittest import TestCase
 
+from domain.posts.create_post_command import CreatePost
+from domain.posts.post_creator import PostCreator, UnkownUserID
+from domain.users.query_user_by_id import QueryUserByID
 from infrastructure.repositories.users.users_repository_in_memory import InMemoryUsersRepository
-from posts.create_post_command import CreatePost
-from posts.post_creator import PostCreator, UnkownUserID
-from posts.post_id import PostID
+from domain.posts.post_id import PostID
 from tests.fixtures.time import a_perfect_day_and_time
 from tests.fixtures.users import maria
-from users.query_user_by_id import QueryUserByID
-from users.user_id import UserID
+from domain.users.user_id import UserID
 
 
 class TestCreatePost(TestCase):

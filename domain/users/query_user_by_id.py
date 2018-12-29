@@ -1,5 +1,5 @@
-from users.user_id import UserID
-from users.users_repository import UsersRepository
+from domain.users.user_id import UserID
+from domain.users.users_repository import UsersRepository
 
 
 class QueryUserByID(object):

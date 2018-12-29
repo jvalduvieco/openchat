@@ -1,14 +1,14 @@
 from unittest import TestCase
 
+from domain.relationship.create_relationship import CreateRelationship
+from domain.relationship.relationship_creator import RelationshipCreator
+from domain.users.exceptions import UnknownUser
+from domain.users.query_user_by_id import QueryUserByID
 from infrastructure.clock.fake_clock import FakeClock
 from infrastructure.repositories.users.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.time import a_perfect_day_and_time
 from tests.fixtures.users import maria, bob, inexistent_user_id
-from relationship.create_relationship import CreateRelationship
-from relationship.relationship_creator import RelationshipCreator
-from users.exceptions import UnknownUser
-from users.query_user_by_id import QueryUserByID
-from users.user_id import UserID
+from domain.users.user_id import UserID
 
 
 class TestCreateRelationship(TestCase):

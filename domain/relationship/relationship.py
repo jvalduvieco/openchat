@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 
-from users.user_id import UserID
+from domain.users.user_id import UserID
 
 
 @dataclass(frozen=True)
-class CreateRelationship:
-    follower_id: UserID
+class Relationship:
     followee_id: UserID
+    follower_id: UserID

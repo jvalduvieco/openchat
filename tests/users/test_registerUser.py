@@ -1,9 +1,10 @@
 from unittest import TestCase
 
+from domain.users.exceptions import DuplicatedUserName
+from domain.users.user_registrator import UserRegistrator
 from infrastructure.repositories.users.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.users import create_maria, maria
-from users.query_user_by_username import QueryUserByUserName
-from users.user_registrator import UserRegistrator, DuplicatedUserName
+from domain.users.query_user_by_username import QueryUserByUserName
 
 
 class TestRegisterUser(TestCase):

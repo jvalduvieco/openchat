@@ -1,8 +1,8 @@
 from typing import List
 
-from relationship.relationship import Relationship
+from domain.relationship.relationship import Relationship
 from tests.relationship.relationship_repository import RelationshipRepository
-from users.user_id import UserID
+from domain.users.user_id import UserID
 
 
 class InMemoryRelationshipRepository(RelationshipRepository):

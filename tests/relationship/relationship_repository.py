@@ -1,8 +1,8 @@
 import abc
 from typing import List
 
-from relationship.relationship import Relationship
-from users.user_id import UserID
+from domain.relationship.relationship import Relationship
+from domain.users.user_id import UserID
 
 
 class RelationshipRepository(abc.ABC):

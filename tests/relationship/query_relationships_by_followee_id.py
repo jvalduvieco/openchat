@@ -1,5 +1,5 @@
+from domain.users.user_id import UserID
 from tests.relationship.relationship_repository import RelationshipRepository
-from users.user_id import UserID
 
 
 class QueryFollowersByFolloweeID(object):

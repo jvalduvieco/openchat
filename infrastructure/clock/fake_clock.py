@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from misc.clock import Clock
+from domain.misc.clock import Clock
 
 
 class FakeClock(Clock):

@@ -1,10 +1,10 @@
-from typing import List, Tuple
+from typing import Tuple, List
 
-from users.exceptions import DuplicatedUserName
-from users.query_user_by_username import QueryUserByUserName
-from users.register_user_command import RegisterUser
-from users.user import User
-from users.user_registered import UserRegistered
+from domain.users.exceptions import DuplicatedUserName
+from domain.users.query_user_by_username import QueryUserByUserName
+from domain.users.register_user_command import RegisterUser
+from domain.users.user import User
+from domain.users.user_registered import UserRegistered
 
 
 class UserRegistrator(object):

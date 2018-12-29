@@ -1,8 +1,8 @@
 from typing import List
 
-from posts.post import Post
-from posts.posts_repository import PostsRepository
-from users.user_id import UserID
+from domain.posts.post import Post
+from domain.posts.posts_repository import PostsRepository
+from domain.users.user_id import UserID
 
 
 class InMemoryPostsRepository(PostsRepository):

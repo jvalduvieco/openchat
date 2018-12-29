@@ -1,9 +1,9 @@
 from typing import List
 
-from posts.post import Post
-from posts.posts_repository import PostsRepository
-from users.exceptions import UnknownUser
-from users.query_user_by_id import QueryUserByID
+from domain.posts.post import Post
+from domain.posts.posts_repository import PostsRepository
+from domain.users.exceptions import UnknownUser
+from domain.users.query_user_by_id import QueryUserByID
 
 
 class QueryPostByUserID(object):

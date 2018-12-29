@@ -1,10 +1,10 @@
-from typing import Tuple, List
+from typing import List, Tuple
 
-from misc.clock import Clock
-from users.exceptions import UnknownUser
-from users.query_user_by_id import QueryUserByID
-from relationship.relationship import Relationship
-from relationship.relationship_created import RelationshipCreated
+from domain.misc.clock import Clock
+from domain.relationship.relationship import Relationship
+from domain.relationship.relationship_created import RelationshipCreated
+from domain.users.exceptions import UnknownUser
+from domain.users.query_user_by_id import QueryUserByID
 
 
 class RelationshipCreator(object):

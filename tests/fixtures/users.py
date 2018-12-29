@@ -1,9 +1,9 @@
-from users.password import Password
-from users.register_user_command import RegisterUser
-from relationship.relationship import Relationship
-from users.user import User
-from users.user_id import UserID
-from users.user_name import UserName
+from domain.relationship.relationship import Relationship
+from domain.users.password import Password
+from domain.users.register_user_command import RegisterUser
+from domain.users.user import User
+from domain.users.user_id import UserID
+from domain.users.user_name import UserName
 
 
 def maria() -> User:

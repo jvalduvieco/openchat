@@ -1,5 +1,5 @@
-from posts.post import Post
-from posts.post_id import PostID
+from domain.posts.post import Post
+from domain.posts.post_id import PostID
 from tests.fixtures.time import a_perfect_day_and_time, a_perfect_day_and_time_ten_minutes_after
 from tests.fixtures.users import maria, bob
 

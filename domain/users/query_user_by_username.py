@@ -1,6 +1,6 @@
-from users.user import User
-from users.user_name import UserName
-from users.users_repository import UsersRepository
+from domain.users.user import User
+from domain.users.user_name import UserName
+from domain.users.users_repository import UsersRepository
 
 
 class QueryUserByUserName(object):

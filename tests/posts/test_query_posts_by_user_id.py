@@ -1,13 +1,13 @@
 from unittest import TestCase
 
+from domain.posts.posts_by_user_id_query import PostsByUserID
+from domain.posts.query_posts_by_user_id import QueryPostByUserID
+from domain.users.exceptions import UnknownUser
+from domain.users.query_user_by_id import QueryUserByID
 from infrastructure.repositories.posts.posts_repository_in_memory import InMemoryPostsRepository
 from infrastructure.repositories.users.users_repository_in_memory import InMemoryUsersRepository
-from posts.posts_by_user_id_query import PostsByUserID
-from posts.query_posts_by_user_id import QueryPostByUserID
 from tests.fixtures.posts import a_post_by_maria, another_post_by_maria
 from tests.fixtures.users import maria, inexistent_user_id
-from users.exceptions import UnknownUser
-from users.query_user_by_id import QueryUserByID
 
 
 class TestCreatePost(TestCase):

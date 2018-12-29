@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-from users.user_id import UserID
+from domain.users.user_id import UserID
 
 
 @dataclass(frozen=True)

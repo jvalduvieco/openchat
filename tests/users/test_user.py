@@ -1,10 +1,10 @@
 from dataclasses import replace
 from unittest import TestCase
 
-from users.password import Password
-from users.user import User
-from users.user_id import UserID
-from users.user_name import UserName
+from domain.users.password import Password
+from domain.users.user import User
+from domain.users.user_id import UserID
+from domain.users.user_name import UserName
 
 
 class TestUser(TestCase):

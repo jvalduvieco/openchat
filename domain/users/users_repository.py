@@ -1,8 +1,8 @@
 import abc
 
-from users.user import User
-from users.user_id import UserID
-from users.user_name import UserName
+from domain.users.user import User
+from domain.users.user_id import UserID
+from domain.users.user_name import UserName
 
 
 class UsersRepository(abc.ABC):

@@ -1,15 +1,15 @@
 from unittest import TestCase
 
+from domain.posts.query_wall_by_user_id import QueryWallByUserID
+from domain.posts.wall_by_user_id import WallByUserID
+from domain.users.exceptions import UnknownUser
+from domain.users.query_user_by_id import QueryUserByID
 from infrastructure.repositories.posts.posts_repository_in_memory import InMemoryPostsRepository
 from infrastructure.repositories.relationship.relationship_repository_in_memory import InMemoryRelationshipRepository
 from infrastructure.repositories.users.users_repository_in_memory import InMemoryUsersRepository
-from tests.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
-from posts.query_wall_by_user_id import QueryWallByUserID
-from posts.wall_by_user_id import WallByUserID
 from tests.fixtures.posts import a_post_by_maria, a_post_by_bob, another_post_by_maria
 from tests.fixtures.users import maria, bob_follows_maria, inexistent_user_id
-from users.exceptions import UnknownUser
-from users.query_user_by_id import QueryUserByID
+from tests.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
 
 
 class TestCreatePost(TestCase):

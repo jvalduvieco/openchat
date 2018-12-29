@@ -1,6 +1,7 @@
 import datetime
 from dataclasses import dataclass
-from users.user_name import UserName
+
+from domain.users.user_name import UserName
 
 
 @dataclass(frozen=True)

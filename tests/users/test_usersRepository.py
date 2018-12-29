@@ -2,9 +2,9 @@ from unittest import TestCase
 
 from parameterized import parameterized
 
+from domain.users.users_repository import UsersRepository
 from infrastructure.repositories.users.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.users import maria
-from users.users_repository import UsersRepository
 
 
 class TestUsersRepository(TestCase):

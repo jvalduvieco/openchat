@@ -1,7 +1,7 @@
 from typing import List
 
-from users.user import User
-from users.users_repository import UsersRepository
+from domain.users.user import User
+from domain.users.users_repository import UsersRepository
 
 
 class QueryAllUsers(object):

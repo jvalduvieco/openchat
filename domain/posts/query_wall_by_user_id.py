@@ -1,8 +1,8 @@
-from posts.posts_repository import PostsRepository
+from domain.posts.posts_repository import PostsRepository
+from domain.posts.wall_by_user_id import WallByUserID
+from domain.users.exceptions import UnknownUser
+from domain.users.query_user_by_id import QueryUserByID
 from tests.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
-from posts.wall_by_user_id import WallByUserID
-from users.exceptions import UnknownUser
-from users.query_user_by_id import QueryUserByID
 
 
 class QueryWallByUserID(object):

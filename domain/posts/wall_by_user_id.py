@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from users.user_id import UserID
+from domain.users.user_id import UserID
 
 
 @dataclass(frozen=True)
-class PostsByUserID:
+class WallByUserID(object):
     user_id: UserID
