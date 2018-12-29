@@ -29,7 +29,7 @@ class TestCreateRelationship(TestCase):
     def test_should_throw_an_exception_on_duplicate_username(self):
         command = CreateRelationship(follower_id=UserID(inexistent_user_id()), followee_id=maria().ID)
 
-        relationship_creator, events = RelationshipCreator(QueryUserByID(InMemoryUsersRepository([bob(), maria()])),
+        relationship_creator = RelationshipCreator(QueryUserByID(InMemoryUsersRepository([bob(), maria()])),
                                                            FakeClock(a_perfect_day_and_time()))
 
         with self.assertRaises(UnknownUser):
