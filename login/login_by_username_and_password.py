@@ -2,9 +2,9 @@ from typing import Tuple, List
 
 from misc.clock import Clock
 from users.exceptions import UnknownUser, InvalidCredentials
-from users.login_user_command import LoginUser
+from login.login_user_command import LoginUser
 from users.query_user_by_username import QueryUserByUserName
-from users.user_signed_in import UserSignedIn
+from login.user_signed_in import UserSignedIn
 
 
 class UserLoginByUserNameAndPassword(object):

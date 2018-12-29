@@ -4,9 +4,9 @@ from infrastructure.clock.fake_clock import FakeClock
 from infrastructure.repositories.users.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.time import a_perfect_day_and_time
 from tests.fixtures.users import maria
-from users.login_by_username_and_password import UserLoginByUserNameAndPassword
+from login.login_by_username_and_password import UserLoginByUserNameAndPassword
 from users.exceptions import UnknownUser, InvalidCredentials
-from users.login_user_command import LoginUser
+from login.login_user_command import LoginUser
 from users.password import Password
 from users.query_user_by_username import QueryUserByUserName
 from users.user_name import UserName
