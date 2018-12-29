@@ -2,12 +2,10 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7.1
+      - image: circleci/python:3.7.2
 
     steps:
       - checkout
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
 
       - restore_cache:
           keys:
@@ -23,8 +21,6 @@ jobs:
       - save_cache:
           paths:
             - .venv
-            - /usr/local/bin
-            - /usr/local/lib/python3.6/site-packages
           key: v1-dependencies-{{ checksum "Pipfile.lock" }}
 
       - run:

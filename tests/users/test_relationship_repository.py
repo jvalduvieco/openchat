@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from parameterized import parameterized
 
-from infrastructure.users.followers_repository_in_memory import InMemoryFollowersRepository
+from infrastructure.repositories.users.followers_repository_in_memory import InMemoryFollowersRepository
 from tests.fixtures.users import bob_follows_maria
 from users.followers_repository import FollowersRepository
 

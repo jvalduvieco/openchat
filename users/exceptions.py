@@ -4,3 +4,7 @@ class UnknownUser(ValueError):
 
 class InvalidCredentials(ValueError):
     pass
+
+
+class DuplicatedUserName(ValueError):
+    pass
