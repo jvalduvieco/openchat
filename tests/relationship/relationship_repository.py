@@ -1,11 +1,11 @@
 import abc
 from typing import List
 
-from users.relationship import Relationship
+from relationship.relationship import Relationship
 from users.user_id import UserID
 
 
-class FollowersRepository(abc.ABC):
+class RelationshipRepository(abc.ABC):
     @abc.abstractmethod
     def by_followee_id(self, followee_id: UserID) -> List[UserID]:
         pass

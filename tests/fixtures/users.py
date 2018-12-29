@@ -1,6 +1,6 @@
 from users.password import Password
 from users.register_user_command import RegisterUser
-from users.relationship import Relationship
+from relationship.relationship import Relationship
 from users.user import User
 from users.user_id import UserID
 from users.user_name import UserName

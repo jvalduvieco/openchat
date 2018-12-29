@@ -2,16 +2,16 @@ from unittest import TestCase
 
 from parameterized import parameterized
 
-from infrastructure.repositories.users.followers_repository_in_memory import InMemoryFollowersRepository
+from infrastructure.repositories.relationship.relationship_repository_in_memory import InMemoryRelationshipRepository
 from tests.fixtures.users import bob_follows_maria
-from users.followers_repository import FollowersRepository
+from tests.relationship.relationship_repository import RelationshipRepository
 
 
 class TestRelationshipRepository(TestCase):
     @parameterized.expand([
-        [InMemoryFollowersRepository()]
+        [InMemoryRelationshipRepository()]
     ])
-    def test_should_save_a_relationship_and_recover_by_followee(self, followers_repository: FollowersRepository):
+    def test_should_save_a_relationship_and_recover_by_followee(self, followers_repository: RelationshipRepository):
         a_relationship = bob_follows_maria()
         followers_repository.save(a_relationship)
 

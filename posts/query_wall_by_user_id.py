@@ -1,5 +1,5 @@
 from posts.posts_repository import PostsRepository
-from users.query_relationships_by_followee_id import QueryFollowersByFolloweeID
+from tests.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
 from posts.wall_by_user_id import WallByUserID
 from users.exceptions import UnknownUser
 from users.query_user_by_id import QueryUserByID

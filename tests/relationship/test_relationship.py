@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from users.relationship import Relationship
+from relationship.relationship import Relationship
 from users.user_id import UserID
 
 

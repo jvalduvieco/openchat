@@ -1,11 +1,11 @@
 from typing import List
 
-from users.relationship import Relationship
-from users.followers_repository import FollowersRepository
+from relationship.relationship import Relationship
+from tests.relationship.relationship_repository import RelationshipRepository
 from users.user_id import UserID
 
 
-class InMemoryFollowersRepository(FollowersRepository):
+class InMemoryRelationshipRepository(RelationshipRepository):
     def __init__(self, initial_relationships=None):
         if initial_relationships is None:
             initial_relationships = []

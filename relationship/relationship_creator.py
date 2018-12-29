@@ -3,8 +3,8 @@ from typing import Tuple, List
 from misc.clock import Clock
 from users.exceptions import UnknownUser
 from users.query_user_by_id import QueryUserByID
-from users.relationship import Relationship
-from users.relationship_created import RelationshipCreated
+from relationship.relationship import Relationship
+from relationship.relationship_created import RelationshipCreated
 
 
 class RelationshipCreator(object):
