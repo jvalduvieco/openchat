@@ -25,7 +25,7 @@ A set of tests that run without errors implementing all domain included in API.m
 * Some code that should not be there
 * Not very ugly things. Just WIP.
 
-##Installing
+## Installing
 * Clone the repo
 * [Install Pipenv](https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv)
 * Install deps:
