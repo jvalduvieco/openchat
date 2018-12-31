@@ -1,0 +1,2 @@
+class UnkownUserID(ValueError):
+    pass
