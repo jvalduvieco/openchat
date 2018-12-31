@@ -1,7 +1,8 @@
+from typing import List, Callable
+
 from flask import Flask
 from flask_injector import FlaskInjector
 from injector import Binder, Injector, SingletonScope
-from typing import List, Callable
 
 from apps.RESTAPI.controllers.registration import registration
 from domain.misc import CommandBus, EventBus
@@ -13,10 +14,10 @@ from domain.users.user_registrator import UserRegistrator
 from domain.users.users_repository import UsersRepository
 from infrastructure.CommandBus.local_command_handler import build_local_command_handler
 from infrastructure.CommandBus.local_synchronous_command_bus import LocalSynchronousCommandBus
-from infrastructure.EventBus.local_synchronous_event_bus import LocalSynchronousEventBus
-from infrastructure.repositories.posts.posts_repository_in_memory import InMemoryPostsRepository
-from infrastructure.repositories.relationship.relationship_repository_in_memory import InMemoryRelationshipRepository
-from infrastructure.repositories.users.users_repository_in_memory import InMemoryUsersRepository
+from infrastructure.local_synchronous_event_bus import LocalSynchronousEventBus
+from infrastructure.repositories.posts_repository_in_memory import InMemoryPostsRepository
+from infrastructure.repositories.relationship_repository_in_memory import InMemoryRelationshipRepository
+from infrastructure.repositories.users_repository_in_memory import InMemoryUsersRepository
 
 
 def user(binder: Binder):

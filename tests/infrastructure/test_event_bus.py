@@ -4,7 +4,7 @@ from unittest import TestCase
 from parameterized import parameterized
 
 from domain.misc import EventBus
-from infrastructure.EventBus.local_synchronous_event_bus import LocalSynchronousEventBus
+from infrastructure.local_synchronous_event_bus import LocalSynchronousEventBus
 
 
 @dataclass(frozen=True)

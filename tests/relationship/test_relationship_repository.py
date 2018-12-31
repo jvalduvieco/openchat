@@ -2,9 +2,9 @@ from unittest import TestCase
 
 from parameterized import parameterized
 
-from infrastructure.repositories.relationship.relationship_repository_in_memory import InMemoryRelationshipRepository
-from tests.fixtures.users import bob_follows_maria
 from domain.relationship.relationship_repository import RelationshipRepository
+from infrastructure.repositories.relationship_repository_in_memory import InMemoryRelationshipRepository
+from tests.fixtures.users import bob_follows_maria
 
 
 class TestRelationshipRepository(TestCase):
