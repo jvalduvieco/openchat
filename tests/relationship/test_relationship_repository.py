@@ -4,7 +4,7 @@ from parameterized import parameterized
 
 from infrastructure.repositories.relationship.relationship_repository_in_memory import InMemoryRelationshipRepository
 from tests.fixtures.users import bob_follows_maria
-from tests.relationship.relationship_repository import RelationshipRepository
+from domain.relationship.relationship_repository import RelationshipRepository
 
 
 class TestRelationshipRepository(TestCase):

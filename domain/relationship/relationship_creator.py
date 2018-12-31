@@ -17,6 +17,6 @@ class RelationshipCreator(object):
             raise UnknownUser('User with id: %d not found')
         if self.query_user_by_id.execute(command.followee_id) is None:
             raise UnknownUser('User with id: %d not found')
-        return Relationship(followee_id=command.followee_id, follower_id=command.follower_id), \
-               [RelationshipCreated(followee_id=command.followee_id, follower_id=command.follower_id,
-                                    timestamp=self.clock.now())]
+        return Relationship(followee_id=command.followee_id, follower_id=command.follower_id), [
+            RelationshipCreated(followee_id=command.followee_id, follower_id=command.follower_id,
+                                timestamp=self.clock.now())]

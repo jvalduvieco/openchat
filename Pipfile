@@ -11,6 +11,11 @@ flake8 = "*"
 parameterized = "*"
 
 [packages]
+Flask = "*"
+flask_injector = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true

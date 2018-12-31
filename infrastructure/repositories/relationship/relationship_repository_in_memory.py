@@ -1,7 +1,7 @@
 from typing import List
 
 from domain.relationship.relationship import Relationship
-from tests.relationship.relationship_repository import RelationshipRepository
+from domain.relationship.relationship_repository import RelationshipRepository
 from domain.users.user_id import UserID
 
 

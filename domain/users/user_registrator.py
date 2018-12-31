@@ -1,4 +1,5 @@
 from typing import Tuple, List
+from injector import inject
 
 from domain.users.exceptions import DuplicatedUserName
 from domain.users.query_user_by_username import QueryUserByUserName
@@ -8,6 +9,7 @@ from domain.users.user_registered import UserRegistered
 
 
 class UserRegistrator(object):
+    @inject
     def __init__(self, query_user_by_username: QueryUserByUserName):
         self.query_user_by_username = query_user_by_username
 

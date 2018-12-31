@@ -9,7 +9,7 @@ from infrastructure.repositories.relationship.relationship_repository_in_memory 
 from infrastructure.repositories.users.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.posts import a_post_by_maria, a_post_by_bob, another_post_by_maria
 from tests.fixtures.users import maria, bob_follows_maria, inexistent_user_id
-from tests.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
+from domain.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
 
 
 class TestCreatePost(TestCase):

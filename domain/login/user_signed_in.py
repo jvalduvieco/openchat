@@ -8,4 +8,3 @@ from domain.users.user_name import UserName
 class UserSignedIn:
     username: UserName
     timestamp: datetime
-

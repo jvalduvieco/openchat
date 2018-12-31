@@ -30,7 +30,7 @@ class TestCreateRelationship(TestCase):
         command = CreateRelationship(follower_id=UserID(inexistent_user_id()), followee_id=maria().ID)
 
         relationship_creator = RelationshipCreator(QueryUserByID(InMemoryUsersRepository([bob(), maria()])),
-                                                           FakeClock(a_perfect_day_and_time()))
+                                                   FakeClock(a_perfect_day_and_time()))
 
         with self.assertRaises(UnknownUser):
             relationship_creator.execute(command)

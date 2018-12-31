@@ -2,7 +2,7 @@ from domain.posts.posts_repository import PostsRepository
 from domain.posts.wall_by_user_id import WallByUserID
 from domain.users.exceptions import UnknownUser
 from domain.users.query_user_by_id import QueryUserByID
-from tests.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
+from domain.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
 
 
 class QueryWallByUserID(object):
@@ -24,5 +24,4 @@ class QueryWallByUserID(object):
             raise UnknownUser('User %s does not exist' % query.user_id.contents)
 
         return sorted(self._posts_by_followers(query)
-                      + self.posts_repository.by_user_id(query.user_id)
-                      , key=lambda x: x.created_at)
+                      + self.posts_repository.by_user_id(query.user_id), key=lambda x: x.created_at)

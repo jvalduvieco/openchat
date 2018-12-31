@@ -1,7 +1,7 @@
-import uuid
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 from domain.users.password import Password
+from domain.users.user_id import UserID
 from domain.users.user_name import UserName
 
 
@@ -10,4 +10,4 @@ class UserRegistered:
     username: UserName
     password: Password
     about: str
-    ID: uuid = field(default_factory=uuid.uuid4)
+    ID: UserID
