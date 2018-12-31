@@ -12,7 +12,7 @@ class ADummyEventHappened:
     username: str
 
 
-class TestLocalSynchronousCommandBus(TestCase):
+class TestLocalSynchronousEventBus(TestCase):
 
     @parameterized.expand([
         [LocalSynchronousEventBus()]

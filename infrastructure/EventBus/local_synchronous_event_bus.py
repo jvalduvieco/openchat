@@ -1,7 +1,10 @@
+import logging
 from collections.abc import Iterable
 from typing import List, TypeVar, Callable
 
 from domain.misc.EventBus import EventBus
+
+logger = logging.getLogger()
 
 
 class LocalSynchronousEventBus(EventBus):
@@ -24,4 +27,5 @@ class LocalSynchronousEventBus(EventBus):
                     try:
                         subscriber_callback.__call__(event)
                     except:  # noqa: E722
+                        logging.exception("exception handling %s." % event_type)
                         continue
