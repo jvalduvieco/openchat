@@ -4,7 +4,7 @@ This is an implementation of the [openchat](https://github.com/sandromancuso/cle
 
 This implementation is a deliverate practice made in Python as I need to learn the language also used some kind of clean / CQRS architecture to continue learning.
 
-##Rationale
+## Rationale
 These are the principles I've tried to follow:
 * Be efficient. Write the less infrastructure code as possible
 * Be familiar. Don't drink too much functional/CQRS/Clean brew
