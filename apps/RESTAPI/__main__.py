@@ -54,3 +54,8 @@ def create_app():
     register_command_handlers(injector, injector.get(CommandBus), injector.get(EventBus),
                               modules=[user_command_handlers])
     return app
+
+
+if __name__ == "__main__":
+    app = create_app()
+    app.run()
