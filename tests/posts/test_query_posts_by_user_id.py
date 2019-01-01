@@ -34,7 +34,7 @@ class TestCreatePost(TestCase):
         assert a_post_by_maria() in post_list
         assert another_post_by_maria() in post_list
 
-    def test_shoul_throw_an_exception_if_user_does_not_exist(self):
+    def test_should_throw_an_exception_if_user_does_not_exist(self):
         query = PostsByUserID(user_id=inexistent_user_id())
 
         posts_by_user_id = QueryPostByUserID(
