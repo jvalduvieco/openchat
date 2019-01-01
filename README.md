@@ -36,3 +36,7 @@ pipenv install --dev
 ```
 pipenv run tests
 ```
+* Run a development server
+```
+pipenv run start_restapi_dev
+```

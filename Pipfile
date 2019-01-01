@@ -5,7 +5,7 @@ verify_ssl = true
 
 [scripts]
 test = "pipenv run python -m unittest discover -s tests -t ."
-start_dev = "pipenv run python -m apps.RESTAPI"
+start_restapi_dev = "pipenv run python -m apps.RESTAPI"
 
 [dev-packages]
 flake8 = "*"
