@@ -12,3 +12,11 @@ class TestPassword(TestCase):
     def test_should_not_allow_password_with_spaces(self):
         with self.assertRaises(ValueError):
             Password('useless password')
+
+    def test_should_not_allow_empty_password(self):
+        with self.assertRaises(ValueError):
+            Password('')
+
+    def test_should_not_allow_undefined_password(self):
+        with self.assertRaises(ValueError):
+            Password(None)  # noqa

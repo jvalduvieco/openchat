@@ -11,9 +11,15 @@ from domain.users.user_name import UserName
 registration = Blueprint('registration', __name__)
 
 
+def validate_client_request(client_request: dict):
+    if type(client_request) is not dict:
+        raise ValueError("Invalid request")
+
+
 @registration.route('/registration', methods=['POST'])
 def registration_post(command_bus: CommandBus):
     client_request = request.json
+    validate_client_request(client_request)
     register_a_user_command = RegisterUser(
         username=UserName(client_request['username']),
         password=Password(client_request['password']),
