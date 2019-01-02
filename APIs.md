@@ -106,7 +106,7 @@ Response: "At least one of the users does not exit."
 
 ## Retrieve Wall
 
-GET - openchat/user/<id>/wall
+GET - user/<id>/wall
 [{
 	"postId" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 	"userId" : "BOB_IDxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -143,7 +143,7 @@ Response: "User does not exist."
 
 ## Retrieve All Users
 
-GET - openchat/users
+GET - users
 [{
 	"id" : "123e4567-e89b-12d3-a456-426655440000",
 	"username" : "Alice",

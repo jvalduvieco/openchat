@@ -5,7 +5,7 @@ from apps.RESTAPI.__main__ import create_openchat_app
 from infrastructure.uuid.validate_uuid import validate_uuid4_string
 
 
-class TestRegistrationRequests(TestCase):
+class TestLoginRequests(TestCase):
     def setUp(self):
         self.app = create_openchat_app(environment='development')
         self.client = self.app.test_client()

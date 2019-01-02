@@ -1,5 +1,7 @@
-from typing import Tuple
 from typing import List
+from typing import Tuple
+
+from injector import inject
 
 from domain.posts.create_post_command import CreatePost
 from domain.posts.exceptions import UnkownUserID
@@ -9,6 +11,7 @@ from domain.users.query_user_by_id import QueryUserByID
 
 
 class PostCreator(object):
+    @inject
     def __init__(self, query_user_by_id: QueryUserByID):
         self.query_user_by_id = query_user_by_id
 

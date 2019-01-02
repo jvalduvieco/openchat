@@ -6,6 +6,8 @@ from flask import Blueprint, request
 from domain.login.login_user_command import LoginUser
 from domain.misc import CommandBus
 from domain.users.password import Password
+from domain.users.query_all_users import QueryAllUsers
+from domain.users.query_user_by_id import QueryUserByID
 from domain.users.query_user_by_username import QueryUserByUserName
 from domain.users.register_user_command import RegisterUser
 from domain.users.user_id import UserID
@@ -65,3 +67,17 @@ def registration_post(command_bus: CommandBus):
         'id': register_a_user_command.ID.contents.__str__()
     }
     return json.dumps(response), 201
+
+
+@openchat_controllers.route('/users/<user_id>', methods=['GET'])
+def get_user_by_id(user_id, query: QueryUserByID):
+    user = query.execute(UserID(user_id))
+    return json.dumps({'username': user.username.contents, 'about': user.about, 'id': user.ID.contents.__str__()}), 200
+
+
+@openchat_controllers.route('/users', methods=['GET'])
+def get_all_users(query: QueryAllUsers):
+    users = [
+        {'username': user.username.contents, 'about': user.about, 'id': user.ID.contents.__str__()}
+        for user in query.execute()]
+    return json.dumps(users), 200

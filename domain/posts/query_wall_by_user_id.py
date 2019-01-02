@@ -1,11 +1,14 @@
+from injector import inject
+
 from domain.posts.posts_repository import PostsRepository
 from domain.posts.wall_by_user_id import WallByUserID
+from domain.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
 from domain.users.exceptions import UnknownUser
 from domain.users.query_user_by_id import QueryUserByID
-from domain.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
 
 
 class QueryWallByUserID(object):
+    @inject
     def __init__(self, query_user_by_id: QueryUserByID,
                  posts_repository: PostsRepository,
                  query_relationships_by_followee_id: QueryFollowersByFolloweeID):

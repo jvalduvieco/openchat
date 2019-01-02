@@ -14,6 +14,7 @@ from domain.misc import CommandBus, EventBus
 from domain.misc.clock import Clock
 from domain.posts.posts_repository import PostsRepository
 from domain.relationship.relationship_repository import RelationshipRepository
+from domain.users.query_user_by_id import QueryUserByID
 from domain.users.query_user_by_username import QueryUserByUserName
 from domain.users.register_user_command import RegisterUser
 from domain.users.user_registrator import UserRegistrator
@@ -33,6 +34,7 @@ def user(binder: Binder):
     binder.bind(RelationshipRepository, InMemoryRelationshipRepository(), scope=SingletonScope)
     binder.bind(Clock, RealClock(), scope=SingletonScope)
     binder.bind(QueryUserByUserName)
+    binder.bind(QueryUserByID)
     binder.bind(UserRegistrator)
     binder.bind(UserLoginByUserNameAndPassword)
 
