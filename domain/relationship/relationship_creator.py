@@ -1,5 +1,7 @@
 from typing import List, Tuple
 
+from injector import inject
+
 from domain.misc.clock import Clock
 from domain.relationship.relationship import Relationship
 from domain.relationship.relationship_created import RelationshipCreated
@@ -8,6 +10,7 @@ from domain.users.query_user_by_id import QueryUserByID
 
 
 class RelationshipCreator(object):
+    @inject
     def __init__(self, query_user_by_id: QueryUserByID, clock: Clock):
         self.clock = clock
         self.query_user_by_id = query_user_by_id

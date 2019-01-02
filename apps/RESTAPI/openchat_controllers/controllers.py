@@ -10,6 +10,7 @@ from domain.posts.create_post_command import CreatePost
 from domain.posts.post_id import PostID
 from domain.posts.posts_by_user_id_query import PostsByUserID
 from domain.posts.query_posts_by_user_id import QueryPostByUserID
+from domain.relationship.create_relationship import CreateRelationship
 from domain.users.password import Password
 from domain.users.query_all_users import QueryAllUsers
 from domain.users.query_user_by_id import QueryUserByID
@@ -110,7 +111,7 @@ def create_post(command_bus: CommandBus, clock: Clock, user_id):
 
 
 @openchat_controllers.route('/users/<user_id>/timeline', methods=['GET'])
-def fet_user_timeline(query: QueryPostByUserID, user_id):
+def get_user_timeline(query: QueryPostByUserID, user_id):
     posts = query.execute(PostsByUserID(UserID(user_id)))
 
     response = [
@@ -118,3 +119,16 @@ def fet_user_timeline(query: QueryPostByUserID, user_id):
          "dateTime": post.created_at.__str__()} for post in
         posts]
     return json.dumps(response), 200
+
+
+@openchat_controllers.route('/followings', methods=['POST'])
+def followings_post(command_bus: CommandBus):
+    client_request = request.json
+    validate_client_request(client_request, ['followerId', 'followeeId'])
+    create_relationship_command = CreateRelationship(
+        follower_id=UserID(client_request['followerId']),
+        followee_id=UserID(client_request['followeeId']),
+    )
+    command_bus.handle(create_relationship_command)
+
+    return "", 201

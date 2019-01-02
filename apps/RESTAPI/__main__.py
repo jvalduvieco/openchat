@@ -16,6 +16,8 @@ from domain.posts.create_post_command import CreatePost
 from domain.posts.post_creator import PostCreator
 from domain.posts.posts_repository import PostsRepository
 from domain.posts.query_posts_by_user_id import QueryPostByUserID
+from domain.relationship.create_relationship import CreateRelationship
+from domain.relationship.relationship_creator import RelationshipCreator
 from domain.relationship.relationship_repository import RelationshipRepository
 from domain.users.query_user_by_id import QueryUserByID
 from domain.users.query_user_by_username import QueryUserByUserName
@@ -58,6 +60,9 @@ def user_command_handlers(injector: Injector, command_bus: CommandBus, event_bus
     command_bus.register(CreatePost,
                          build_local_command_handler(injector, CreatePost, PostCreator,
                                                      PostsRepository, event_bus))
+    command_bus.register(CreateRelationship,
+                         build_local_command_handler(injector, CreateRelationship, RelationshipCreator,
+                                                     RelationshipRepository, event_bus))
 
 
 def register_command_handlers(injector: Injector, command_bus: CommandBus, event_bus: EventBus,

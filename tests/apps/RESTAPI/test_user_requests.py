@@ -41,10 +41,26 @@ class TestRegistrationRequests(TestCase):
             "about" : "I love playing the chess and dancing."
         }"""))
 
-        json.loads(register_response.get_data(as_text=True))
-
         query_user_response = self.client.get('/users')
         query_user_json_response = json.loads(query_user_response.get_data(as_text=True))
 
         assert 200 == query_user_response.status_code
         assert len(query_user_json_response) == 2
+
+    def test_users_users_can_follow_other_users(self):
+        register_first_user_response = json.loads(self.client.post('/users', json=json.loads("""{
+        "username" : "Alice",
+        "password" : "alki324d",
+        "about" : "I love playing the piano and travelling."
+    }""")).get_data(as_text=True))
+        register_second_user_response = json.loads(self.client.post('/users', json=json.loads("""{
+            "username" : "Maria",
+            "password" : "27398273",
+            "about" : "I love playing the chess and dancing."
+        }""")).get_data(as_text=True))
+
+        follow_response = self.client.post("/followings", json=json.loads('{"followerId" : "%s","followeeId" : "%s"}' %
+                                                                          (register_first_user_response['id'],
+                                                                           register_second_user_response['id'])))
+
+        assert 201 == follow_response.status_code
