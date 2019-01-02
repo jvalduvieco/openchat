@@ -46,14 +46,14 @@ def register_command_handlers(injector: Injector, command_bus: CommandBus, event
 
 
 def create_app():
-    app = Flask(__name__)
+    an_app = Flask(__name__)
 
-    app.register_blueprint(registration)
+    an_app.register_blueprint(registration)
     injector = Injector()
-    FlaskInjector(app=app, injector=injector, modules=[core, user])
+    FlaskInjector(app=an_app, injector=injector, modules=[core, user])
     register_command_handlers(injector, injector.get(CommandBus), injector.get(EventBus),
                               modules=[user_command_handlers])
-    return app
+    return an_app
 
 
 if __name__ == "__main__":

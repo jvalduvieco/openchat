@@ -19,7 +19,6 @@ These are the principles I've tried to follow:
 ## What should you expect from current code
 A set of tests that run without errors implementing all domain included in API.md and one endpointexposed at HTTP REST API level.
 * No error handling
-* No server app
 * No database
 * Some inconsistencies
 * Some code that should not be there
