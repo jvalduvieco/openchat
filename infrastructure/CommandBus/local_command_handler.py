@@ -15,4 +15,4 @@ def build_local_command_handler(injector: Injector, command_type: TypeVar, servi
             repository.save(entity)
         event_bus.publish(events)
 
-    return command_handler
+    return {'command_type': command_type, 'callback': command_handler}
