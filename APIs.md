@@ -38,7 +38,7 @@ POST - /login
 Status OK - 200
 Response:
 {
-    "id" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  "id" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 	"username" : "Alice",
 	"about" : "I love playing the piano and travelling."
 }

@@ -8,6 +8,8 @@ from domain.misc import CommandBus
 from domain.misc.clock import Clock
 from domain.posts.create_post_command import CreatePost
 from domain.posts.post_id import PostID
+from domain.posts.posts_by_user_id_query import PostsByUserID
+from domain.posts.query_posts_by_user_id import QueryPostByUserID
 from domain.users.password import Password
 from domain.users.query_all_users import QueryAllUsers
 from domain.users.query_user_by_id import QueryUserByID
@@ -105,3 +107,14 @@ def create_post(command_bus: CommandBus, clock: Clock, user_id):
         'dateTime': create_post_command.created_at.__str__()
     }
     return json.dumps(response), 201
+
+
+@openchat_controllers.route('/users/<user_id>/timeline', methods=['GET'])
+def fet_user_timeline(query: QueryPostByUserID, user_id):
+    posts = query.execute(PostsByUserID(UserID(user_id)))
+
+    response = [
+        {"postId": post.post_id.contents.__str__(), "userId": post.user_id.contents.__str__(), "text": post.text,
+         "dateTime": post.created_at.__str__()} for post in
+        posts]
+    return json.dumps(response), 200

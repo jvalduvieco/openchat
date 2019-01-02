@@ -15,6 +15,7 @@ from domain.misc.clock import Clock
 from domain.posts.create_post_command import CreatePost
 from domain.posts.post_creator import PostCreator
 from domain.posts.posts_repository import PostsRepository
+from domain.posts.query_posts_by_user_id import QueryPostByUserID
 from domain.relationship.relationship_repository import RelationshipRepository
 from domain.users.query_user_by_id import QueryUserByID
 from domain.users.query_user_by_username import QueryUserByUserName
@@ -37,6 +38,7 @@ def user(binder: Binder):
     binder.bind(Clock, RealClock(), scope=SingletonScope)
     binder.bind(QueryUserByUserName)
     binder.bind(QueryUserByID)
+    binder.bind(QueryPostByUserID)
     binder.bind(UserRegistrator)
     binder.bind(UserLoginByUserNameAndPassword)
 
