@@ -1,3 +1,4 @@
 def handle_invalid_usage(error: ValueError):
-    response = error.__str__()
-    return response, 400
+    status_code = 400
+    response_body = """{"application_error": {"status_code": %d ,"message": "%s"}}""" % (status_code, error.__str__())
+    return response_body, status_code

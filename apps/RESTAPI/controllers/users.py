@@ -16,7 +16,7 @@ def validate_client_request(client_request: dict):
         raise ValueError("Invalid request")
 
 
-@registration.route('/registration', methods=['POST'])
+@registration.route('/users', methods=['POST'])
 def registration_post(command_bus: CommandBus):
     client_request = request.json
     validate_client_request(client_request)
@@ -34,4 +34,4 @@ def registration_post(command_bus: CommandBus):
         'about': register_a_user_command.about,
         'id': register_a_user_command.ID.contents.__str__()
     }
-    return json.dumps(response)
+    return json.dumps(response), 201

@@ -6,7 +6,7 @@ Here is a list of the APIs that need to be implemented by OpenChat.
 
 ## Register New User
 
-POST - openchat/registration
+POST - /users
 {
 	"username" : "Alice",
 	"password" : "alki324d",
@@ -28,7 +28,7 @@ Response: "Username already in use."
 
 ## Login
 
-POST - openchat/login
+POST - /login
 {
 	"username" : "Alice"
 	"password" : "alki324d"
@@ -50,7 +50,7 @@ Response: "Invalid credentials."
 
 ## Create Post
 
-    POST openchat/user/<id>/posts
+POST /users/<id>/posts
 {
 	"text" : "Hello everyone. I'm Alice."
 }
@@ -91,7 +91,7 @@ Response: "User does not exit."
 
 ## Follow User
 
-POST - openchat/follow
+POST - /follow
 {
 	followerId: Alice ID,
 	followeeId: Bob ID
