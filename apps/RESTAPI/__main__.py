@@ -5,6 +5,7 @@ from flask_injector import FlaskInjector
 from injector import Binder, Injector, SingletonScope
 
 from apps.RESTAPI.controllers.registration import registration
+from apps.RESTAPI.error_handler import handle_invalid_usage
 from domain.misc import CommandBus, EventBus
 from domain.posts.posts_repository import PostsRepository
 from domain.relationship.relationship_repository import RelationshipRepository
@@ -53,6 +54,7 @@ def create_app():
     FlaskInjector(app=an_app, injector=injector, modules=[core, user])
     register_command_handlers(injector, injector.get(CommandBus), injector.get(EventBus),
                               modules=[user_command_handlers])
+    an_app.register_error_handler(ValueError, handle_invalid_usage)
     return an_app
 
 
