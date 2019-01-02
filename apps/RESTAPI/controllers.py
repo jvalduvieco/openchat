@@ -3,6 +3,9 @@ from typing import List
 
 from flask import Blueprint, request
 
+from apps.RESTAPI.response_builders import to_multiple_user_response, to_multiple_post_response, \
+    to_single_user_response, \
+    to_single_post_response
 from domain.login.login_user_command import LoginUser
 from domain.misc import CommandBus
 from domain.misc.clock import Clock
@@ -48,13 +51,7 @@ def login_post(command_bus: CommandBus, query: QueryUserByUserName):
     command_bus.handle(login_a_user_command)
     user = query.execute(UserName(client_request['username']))
 
-    response = {
-        'username': login_a_user_command.username.contents,
-        'password': login_a_user_command.password.contents,
-        'about': user.about,
-        'id': user.ID.contents.__str__()
-    }
-    return json.dumps(response), 200
+    return json.dumps(to_single_user_response(user)), 200
 
 
 @openchat_controllers.route('/users', methods=['POST'])
@@ -69,27 +66,17 @@ def registration_post(command_bus: CommandBus):
     )
     command_bus.handle(register_a_user_command)
 
-    response = {
-        'username': register_a_user_command.username.contents,
-        'password': register_a_user_command.password.contents,
-        'about': register_a_user_command.about,
-        'id': register_a_user_command.ID.contents.__str__()
-    }
-    return json.dumps(response), 201
+    return json.dumps(to_multiple_user_response([register_a_user_command])[0]), 201
 
 
 @openchat_controllers.route('/users/<user_id>', methods=['GET'])
 def get_user_by_id(user_id, query: QueryUserByID):
-    user = query.execute(UserID(user_id))
-    return json.dumps({'username': user.username.contents, 'about': user.about, 'id': user.ID.contents.__str__()}), 200
+    return json.dumps(to_multiple_user_response([query.execute(UserID(user_id))])), 200
 
 
 @openchat_controllers.route('/users', methods=['GET'])
 def get_all_users(query: QueryAllUsers):
-    users = [
-        {'username': user.username.contents, 'about': user.about, 'id': user.ID.contents.__str__()}
-        for user in query.execute()]
-    return json.dumps(users), 200
+    return json.dumps(to_multiple_user_response(query.execute())), 200
 
 
 @openchat_controllers.route('/users/<user_id>/timeline', methods=['POST'])
@@ -104,35 +91,18 @@ def create_post(command_bus: CommandBus, clock: Clock, user_id):
     )
     command_bus.handle(create_post_command)
 
-    response = {
-        'userId': create_post_command.user_id.contents.__str__(),
-        'text': create_post_command.text,
-        'postId': create_post_command.post_id.contents.__str__(),
-        'dateTime': create_post_command.created_at.__str__()
-    }
-    return json.dumps(response), 201
+    return json.dumps(to_single_post_response(create_post_command)), 201
 
 
 @openchat_controllers.route('/users/<user_id>/timeline', methods=['GET'])
 def get_user_timeline(query: QueryPostByUserID, user_id):
-    posts = query.execute(PostsByUserID(UserID(user_id)))
-
-    response = [
-        {"postId": post.post_id.contents.__str__(), "userId": post.user_id.contents.__str__(), "text": post.text,
-         "dateTime": post.created_at.__str__()} for post in
-        posts]
-    return json.dumps(response), 200
+    return json.dumps(to_multiple_post_response(query.execute(PostsByUserID(UserID(user_id))))), 200
 
 
 @openchat_controllers.route('/users/<user_id>/wall', methods=['GET'])
 def get_user_wall(query: QueryWallByUserID, user_id):
     posts = query.execute(WallByUserID(UserID(user_id)))
-
-    response = [
-        {"postId": post.post_id.contents.__str__(), "userId": post.user_id.contents.__str__(), "text": post.text,
-         "dateTime": post.created_at.__str__()} for post in
-        posts]
-    return json.dumps(response), 200
+    return json.dumps(to_multiple_post_response(posts)), 200
 
 
 @openchat_controllers.route('/followings', methods=['POST'])
@@ -153,7 +123,4 @@ def get_user_followers(relationships_query: QueryRelationshipsByFollowerID, user
     relationships = relationships_query.execute(UserID(user_id))
 
     followees_with_data = [users_query.execute(relationship.followee_id) for relationship in relationships]
-    response = [
-        {"id": followee.ID.contents.__str__(), "about": followee.about,
-         "username": followee.username.contents.__str__()} for followee in followees_with_data]
-    return json.dumps(response), 200
+    return json.dumps(to_multiple_user_response(followees_with_data)), 200

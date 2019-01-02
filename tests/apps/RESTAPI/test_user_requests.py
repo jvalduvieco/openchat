@@ -25,7 +25,6 @@ class TestRegistrationRequests(TestCase):
         assert 200 == query_user_response.status_code
         assert "Alice" == query_user_json_response['username']
         assert "I love playing the piano and travelling." == query_user_json_response['about']
-        assert "alki324d" == query_user_json_response['password']
         assert register_json_response['id'] == query_user_json_response['id']
         assert validate_uuid4_string(query_user_json_response['id']) is True
 

@@ -22,7 +22,6 @@ class TestRegistrationRequests(TestCase):
         assert 201 == response.status_code
         assert "Alice" == json_response['username']
         assert "I love playing the piano and travelling." == json_response['about']
-        assert "alki324d" == json_response['password']
         assert validate_uuid4_string(json_response['id']) is True
 
     def test_register_user_bad_parameters_results_in_bad_request(self):
