@@ -10,6 +10,8 @@ from domain.posts.create_post_command import CreatePost
 from domain.posts.post_id import PostID
 from domain.posts.posts_by_user_id_query import PostsByUserID
 from domain.posts.query_posts_by_user_id import QueryPostByUserID
+from domain.posts.query_wall_by_user_id import QueryWallByUserID
+from domain.posts.wall_by_user_id import WallByUserID
 from domain.relationship.create_relationship import CreateRelationship
 from domain.relationship.query_relationships_by_follower_id import QueryRelationshipsByFollowerID
 from domain.users.password import Password
@@ -114,6 +116,17 @@ def create_post(command_bus: CommandBus, clock: Clock, user_id):
 @openchat_controllers.route('/users/<user_id>/timeline', methods=['GET'])
 def get_user_timeline(query: QueryPostByUserID, user_id):
     posts = query.execute(PostsByUserID(UserID(user_id)))
+
+    response = [
+        {"postId": post.post_id.contents.__str__(), "userId": post.user_id.contents.__str__(), "text": post.text,
+         "dateTime": post.created_at.__str__()} for post in
+        posts]
+    return json.dumps(response), 200
+
+
+@openchat_controllers.route('/users/<user_id>/wall', methods=['GET'])
+def get_user_wall(query: QueryWallByUserID, user_id):
+    posts = query.execute(WallByUserID(UserID(user_id)))
 
     response = [
         {"postId": post.post_id.contents.__str__(), "userId": post.user_id.contents.__str__(), "text": post.text,
