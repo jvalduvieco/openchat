@@ -11,7 +11,8 @@ def build_local_command_handler(injector: Injector, command_type: TypeVar, servi
         service = injector.get(service_type)
         repository = injector.get(repository_type)
         entity, events = service.execute(command)
-        repository.save(entity)
+        if entity is not None:
+            repository.save(entity)
         event_bus.publish(events)
 
     return command_handler

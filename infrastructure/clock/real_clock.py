@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from domain.misc import Clock
+from domain.misc.clock import Clock
 
 
 class RealClock(Clock):

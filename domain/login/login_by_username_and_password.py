@@ -1,12 +1,16 @@
 from typing import Tuple, List
+
+from injector import inject
+
 from domain.login.login_user_command import LoginUser
+from domain.login.user_signed_in import UserSignedIn
 from domain.misc.clock import Clock
 from domain.users.exceptions import UnknownUser, InvalidCredentials
 from domain.users.query_user_by_username import QueryUserByUserName
-from domain.login.user_signed_in import UserSignedIn
 
 
 class UserLoginByUserNameAndPassword(object):
+    @inject
     def __init__(self, query_user_by_username: QueryUserByUserName, clock: Clock):
         self.clock = clock
         self.query_user_by_username = query_user_by_username

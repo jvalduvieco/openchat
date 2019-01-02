@@ -10,23 +10,28 @@ class TestRegistrationRequests(TestCase):
         self.app = create_openchat_app(environment='development')
         self.client = self.app.test_client()
 
-    def test_can_register_a_user(self):
-        response = self.client.post('/users', json=json.loads("""{
+    def test_can_login_a_user(self):
+        self.client.post('/users', json=json.loads("""{
+                "username" : "Alice",
+                "password" : "alki324d",
+                "about" : "I love playing the piano and travelling."
+            }"""))
+
+        response = self.client.post('/login', json=json.loads("""{
         "username" : "Alice",
-        "password" : "alki324d",
-        "about" : "I love playing the piano and travelling."
+        "password" : "alki324d"
     }"""))
 
         json_response = json.loads(response.get_data(as_text=True))
 
-        assert 201 == response.status_code
+        assert 200 == response.status_code
         assert "Alice" == json_response['username']
         assert "I love playing the piano and travelling." == json_response['about']
         assert "alki324d" == json_response['password']
         assert validate_uuid4_string(json_response['id']) is True
 
-    def test_register_user_bad_parameters_results_in_bad_request(self):
-        response = self.client.post('/users', json=json.loads("""{}"""))
+    def test_login_users_bad_parameters_results_in_bad_request(self):
+        response = self.client.post('/login', json=json.loads("""{}"""))
 
         json_response = json.loads(response.get_data(as_text=True))
 
