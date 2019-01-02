@@ -1,4 +1,6 @@
 # Openchat
+[![CircleCI](https://circleci.com/gh/jvalduvieco/openchat/tree/master.svg?style=svg)](https://circleci.com/gh/jvalduvieco/openchat/tree/master)
+
 This is an implementation of the [openchat](https://github.com/sandromancuso/cleancoders_openchat) project by [unclebob](https://twitter.com/unclebobmartin) and
 [Sandro Mancuso](https://twitter.com/sandromancuso) in their [Comparative case study videos](https://cleancoders.com/videos/comparativeDesign), highly recommended BTW.
 
