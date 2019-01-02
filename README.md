@@ -18,11 +18,17 @@ These are the principles I've tried to follow:
 
 ## What should you expect from current code
 A set of tests that run without errors implementing all domain included in API.md and one endpointexposed at HTTP REST API level.
-* No error handling
+* Happy paths
+* Minimum error handling
 * No database
 * Some inconsistencies
-* Some code that should not be there
+  - Do I want a Query bus? 
+  - Should queries have a query DTO?
+* Some code that should not be there and some repetition (esp. in tests)
 * Not very ugly things. Just WIP.
+
+Feature complete
+
 
 ## Installing
 * Clone the repo
