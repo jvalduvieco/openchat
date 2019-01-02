@@ -163,7 +163,7 @@ Status OK - 200
 
 ## Retrieve all users followed by another user (followees)
 
-GET - /user/:id/followees
+GET - /followings/:id/followees
 [{
 	"id" : "123e4567-e89b-12d3-a456-426655440000",
 	"username" : "Alice",

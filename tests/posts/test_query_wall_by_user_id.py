@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from domain.posts.query_wall_by_user_id import QueryWallByUserID
 from domain.posts.wall_by_user_id import WallByUserID
-from domain.relationship.query_relationships_by_followee_id import QueryFollowersByFolloweeID
+from domain.relationship.query_relationships_by_followee_id import QueryRelationshipsByFolloweeID
 from domain.users.exceptions import UnknownUser
 from domain.users.query_user_by_id import QueryUserByID
 from infrastructure.repositories.posts_repository_in_memory import InMemoryPostsRepository
@@ -18,7 +18,7 @@ class TestCreatePost(TestCase):
         posts_by_user_id = QueryWallByUserID(
             QueryUserByID(InMemoryUsersRepository([maria()])),
             InMemoryPostsRepository([a_post_by_maria(), a_post_by_bob(), another_post_by_maria()]),
-            QueryFollowersByFolloweeID(InMemoryRelationshipRepository([bob_follows_maria()]))
+            QueryRelationshipsByFolloweeID(InMemoryRelationshipRepository([bob_follows_maria()]))
         )
 
         post_list = posts_by_user_id.execute(query)
@@ -34,7 +34,7 @@ class TestCreatePost(TestCase):
         posts_by_user_id = QueryWallByUserID(
             QueryUserByID(InMemoryUsersRepository([maria()])),
             InMemoryPostsRepository([a_post_by_maria(), a_post_by_bob(), another_post_by_maria()]),
-            QueryFollowersByFolloweeID(InMemoryRelationshipRepository([bob_follows_maria()]))
+            QueryRelationshipsByFolloweeID(InMemoryRelationshipRepository([bob_follows_maria()]))
         )
 
         with self.assertRaises(UnknownUser):

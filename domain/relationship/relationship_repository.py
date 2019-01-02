@@ -7,7 +7,11 @@ from domain.users.user_id import UserID
 
 class RelationshipRepository(abc.ABC):
     @abc.abstractmethod
-    def by_followee_id(self, followee_id: UserID) -> List[UserID]:
+    def by_follower_id(self, followee_id: UserID) -> List[Relationship]:
+        pass
+
+    @abc.abstractmethod
+    def by_followee_id(self, followee_id: UserID) -> List[Relationship]:
         pass
 
     @abc.abstractmethod

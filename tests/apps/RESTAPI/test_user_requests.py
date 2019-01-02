@@ -35,7 +35,7 @@ class TestRegistrationRequests(TestCase):
         "password" : "alki324d",
         "about" : "I love playing the piano and travelling."
     }"""))
-        register_response = self.client.post('/users', json=json.loads("""{
+        self.client.post('/users', json=json.loads("""{
             "username" : "Maria",
             "password" : "27398273",
             "about" : "I love playing the chess and dancing."
@@ -47,7 +47,7 @@ class TestRegistrationRequests(TestCase):
         assert 200 == query_user_response.status_code
         assert len(query_user_json_response) == 2
 
-    def test_users_users_can_follow_other_users(self):
+    def test_users_can_follow_other_users(self):
         register_first_user_response = json.loads(self.client.post('/users', json=json.loads("""{
         "username" : "Alice",
         "password" : "alki324d",
@@ -64,3 +64,28 @@ class TestRegistrationRequests(TestCase):
                                                                            register_second_user_response['id'])))
 
         assert 201 == follow_response.status_code
+
+    def test_can_fetch_followers(self):
+        register_first_user_response = json.loads(self.client.post('/users', json=json.loads("""{
+        "username" : "Alice",
+        "password" : "alki324d",
+        "about" : "I love playing the piano and travelling."
+    }""")).get_data(as_text=True))
+        register_second_user_response = json.loads(self.client.post('/users', json=json.loads("""{
+            "username" : "Maria",
+            "password" : "27398273",
+            "about" : "I love playing the chess and dancing."
+        }""")).get_data(as_text=True))
+
+        follow_response = self.client.post("/followings", json=json.loads('{"followerId" : "%s","followeeId" : "%s"}' %
+                                                                          (register_first_user_response['id'],
+                                                                           register_second_user_response['id'])))
+
+        followees_response = self.client.get("/followings/%s/followees" % register_first_user_response['id'])
+
+        followees_json_response = json.loads(followees_response.get_data(as_text=True))
+        assert 201 == follow_response.status_code
+        assert 200 == followees_response.status_code
+
+        assert len(followees_json_response) == 1
+        assert followees_json_response[0]['id'] == register_second_user_response['id']

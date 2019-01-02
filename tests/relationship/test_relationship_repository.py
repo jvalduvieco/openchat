@@ -15,7 +15,21 @@ class TestRelationshipRepository(TestCase):
         a_relationship = bob_follows_maria()
         followers_repository.save(a_relationship)
 
-        followers = followers_repository.by_followee_id(a_relationship.followee_id)
+        relationships = followers_repository.by_followee_id(a_relationship.followee_id)
 
-        assert 1 == len(followers)
-        assert a_relationship.follower_id == followers[0]
+        assert 1 == len(relationships)
+        assert a_relationship.follower_id == relationships[0].follower_id
+        assert a_relationship.followee_id == relationships[0].followee_id
+
+    @parameterized.expand([
+        [InMemoryRelationshipRepository()]
+    ])
+    def test_should_save_a_relationship_and_recover_by_follower(self, followers_repository: RelationshipRepository):
+        a_relationship = bob_follows_maria()
+        followers_repository.save(a_relationship)
+
+        relationships = followers_repository.by_followee_id(a_relationship.followee_id)
+
+        assert 1 == len(relationships)
+        assert a_relationship.follower_id == relationships[0].follower_id
+        assert a_relationship.followee_id == relationships[0].followee_id

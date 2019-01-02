@@ -11,6 +11,7 @@ from domain.posts.post_id import PostID
 from domain.posts.posts_by_user_id_query import PostsByUserID
 from domain.posts.query_posts_by_user_id import QueryPostByUserID
 from domain.relationship.create_relationship import CreateRelationship
+from domain.relationship.query_relationships_by_follower_id import QueryRelationshipsByFollowerID
 from domain.users.password import Password
 from domain.users.query_all_users import QueryAllUsers
 from domain.users.query_user_by_id import QueryUserByID
@@ -132,3 +133,14 @@ def followings_post(command_bus: CommandBus):
     command_bus.handle(create_relationship_command)
 
     return "", 201
+
+
+@openchat_controllers.route('/followings/<user_id>/followees', methods=['GET'])
+def get_user_followers(relationships_query: QueryRelationshipsByFollowerID, users_query: QueryUserByID, user_id):
+    relationships = relationships_query.execute(UserID(user_id))
+
+    followees_with_data = [users_query.execute(relationship.followee_id) for relationship in relationships]
+    response = [
+        {"id": followee.ID.contents.__str__(), "about": followee.about,
+         "username": followee.username.contents.__str__()} for followee in followees_with_data]
+    return json.dumps(response), 200

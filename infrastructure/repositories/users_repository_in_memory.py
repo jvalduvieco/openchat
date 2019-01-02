@@ -17,7 +17,7 @@ class InMemoryUsersRepository(UsersRepository):
         return self.users_by_username.get(username.contents, None)
 
     def by_id(self, user_id: UserID) -> User:
-        return self.users_by_id.get(user_id.contents, None)
+        return self.users_by_id.get(user_id.contents.__str__(), None)
 
     def save(self, user: User) -> None:
         self.users_by_username[user.username.contents] = user
