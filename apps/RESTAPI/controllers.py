@@ -66,7 +66,7 @@ def registration_post(command_bus: CommandBus):
     )
     command_bus.handle(register_a_user_command)
 
-    return json.dumps(to_multiple_user_response([register_a_user_command])[0]), 201
+    return json.dumps(to_single_user_response(register_a_user_command)), 201
 
 
 @openchat_controllers.route('/users/<user_id>', methods=['GET'])
