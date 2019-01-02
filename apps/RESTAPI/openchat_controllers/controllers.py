@@ -5,6 +5,9 @@ from flask import Blueprint, request
 
 from domain.login.login_user_command import LoginUser
 from domain.misc import CommandBus
+from domain.misc.clock import Clock
+from domain.posts.create_post_command import CreatePost
+from domain.posts.post_id import PostID
 from domain.users.password import Password
 from domain.users.query_all_users import QueryAllUsers
 from domain.users.query_user_by_id import QueryUserByID
@@ -81,3 +84,24 @@ def get_all_users(query: QueryAllUsers):
         {'username': user.username.contents, 'about': user.about, 'id': user.ID.contents.__str__()}
         for user in query.execute()]
     return json.dumps(users), 200
+
+
+@openchat_controllers.route('/users/<user_id>/timeline', methods=['POST'])
+def create_post(command_bus: CommandBus, clock: Clock, user_id):
+    client_request = request.json
+    validate_client_request(client_request, ['text'])
+    create_post_command = CreatePost(
+        post_id=PostID(),
+        user_id=UserID(user_id),
+        text=client_request['text'],
+        created_at=clock.now()
+    )
+    command_bus.handle(create_post_command)
+
+    response = {
+        'userId': create_post_command.user_id.contents.__str__(),
+        'text': create_post_command.text,
+        'postId': create_post_command.post_id.contents.__str__(),
+        'dateTime': create_post_command.created_at.__str__()
+    }
+    return json.dumps(response), 201

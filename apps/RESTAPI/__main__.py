@@ -12,6 +12,8 @@ from domain.login.login_by_username_and_password import UserLoginByUserNameAndPa
 from domain.login.login_user_command import LoginUser
 from domain.misc import CommandBus, EventBus
 from domain.misc.clock import Clock
+from domain.posts.create_post_command import CreatePost
+from domain.posts.post_creator import PostCreator
 from domain.posts.posts_repository import PostsRepository
 from domain.relationship.relationship_repository import RelationshipRepository
 from domain.users.query_user_by_id import QueryUserByID
@@ -51,6 +53,9 @@ def user_command_handlers(injector: Injector, command_bus: CommandBus, event_bus
     command_bus.register(LoginUser,
                          build_local_command_handler(injector, LoginUser, UserLoginByUserNameAndPassword,
                                                      UsersRepository, event_bus))
+    command_bus.register(CreatePost,
+                         build_local_command_handler(injector, CreatePost, PostCreator,
+                                                     PostsRepository, event_bus))
 
 
 def register_command_handlers(injector: Injector, command_bus: CommandBus, event_bus: EventBus,
