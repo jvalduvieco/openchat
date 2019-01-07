@@ -29,5 +29,5 @@ jobs:
           name: run tests
           command: |
             pipenv run test
-            codecov
+            pipenv run codecov
 
