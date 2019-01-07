@@ -4,12 +4,14 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [scripts]
-test = "pipenv run python -m unittest discover -s tests -t ."
+test = "pipenv coverage run -m unittest discover -s tests -t ."
 start_restapi_dev = "pipenv run python -m apps.RESTAPI"
 
 [dev-packages]
 flake8 = "*"
 parameterized = "*"
+coverage = "*"
+codecov = "*"
 
 [packages]
 Flask = "*"
