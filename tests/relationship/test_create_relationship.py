@@ -26,8 +26,17 @@ class TestCreateRelationship(TestCase):
         assert events[0].followee_id == command.followee_id
         assert events[0].timestamp == a_perfect_day_and_time()
 
-    def test_should_throw_an_exception_on_duplicate_username(self):
+    def test_should_throw_an_exception_on_inexistent_follower(self):
         command = CreateRelationship(follower_id=UserID(inexistent_user_id()), followee_id=maria().ID)
+
+        relationship_creator = RelationshipCreator(QueryUserByID(InMemoryUsersRepository([bob(), maria()])),
+                                                   FakeClock(a_perfect_day_and_time()))
+
+        with self.assertRaises(UnknownUser):
+            relationship_creator.execute(command)
+
+    def test_should_throw_an_exception_on_inexistent_followee(self):
+        command = CreateRelationship(follower_id=maria().ID, followee_id=UserID(inexistent_user_id()))
 
         relationship_creator = RelationshipCreator(QueryUserByID(InMemoryUsersRepository([bob(), maria()])),
                                                    FakeClock(a_perfect_day_and_time()))
