@@ -13,6 +13,12 @@ def register_command_handlers(injector: Injector, command_bus: CommandBus, event
         module(injector, command_bus, event_bus)
 
 
+def register_event_handlers(injector: Injector, event_bus: EventBus,
+                            modules: List[Callable]):
+    for module in modules:
+        module(injector, event_bus)
+
+
 def find_missing_keys(keys, expected_keys):
     return [key for key in expected_keys if key not in keys]
 
