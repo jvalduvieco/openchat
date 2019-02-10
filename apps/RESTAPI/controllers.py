@@ -13,8 +13,6 @@ from domain.posts.create_post_command import CreatePost
 from domain.posts.post_id import PostID
 from domain.posts.posts_by_user_id_query import PostsByUserID
 from domain.posts.query_posts_by_user_id import QueryPostByUserID
-from domain.posts.query_wall_by_user_id import QueryWallByUserID
-from domain.posts.wall_by_user_id import WallByUserID
 from domain.relationship.create_relationship import CreateRelationship
 from domain.relationship.query_relationships_by_follower_id import QueryRelationshipsByFollowerID
 from domain.users.password import Password
@@ -24,6 +22,8 @@ from domain.users.query_user_by_username import QueryUserByUserName
 from domain.users.register_user_command import RegisterUser
 from domain.users.user_id import UserID
 from domain.users.user_name import UserName
+from domain.wall.by_user_id import WallByUserID
+from domain.wall.query_wall_by_user_id import QueryWallByUserID
 
 openchat_controllers = Blueprint('openchat_controllers', __name__)
 

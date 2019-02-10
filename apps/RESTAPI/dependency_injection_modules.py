@@ -10,18 +10,21 @@ from domain.users.query_user_by_id import QueryUserByID
 from domain.users.query_user_by_username import QueryUserByUserName
 from domain.users.user_registrator import UserRegistrator
 from domain.users.users_repository import UsersRepository
+from domain.wall.repository import WallRepository
 from infrastructure.CommandBus.local_synchronous_command_bus import LocalSynchronousCommandBus
+from infrastructure.EventBus.local_synchronous_event_bus import LocalSynchronousEventBus
 from infrastructure.clock.real_clock import RealClock
-from infrastructure.local_synchronous_event_bus import LocalSynchronousEventBus
 from infrastructure.repositories.posts_repository_in_memory import InMemoryPostsRepository
 from infrastructure.repositories.relationship_repository_in_memory import InMemoryRelationshipRepository
 from infrastructure.repositories.users_repository_in_memory import InMemoryUsersRepository
+from infrastructure.repositories.wall_repository_in_memory import InMemoryWallRepository
 
 
 def user(binder: Binder):
     binder.bind(UsersRepository, InMemoryUsersRepository(), scope=SingletonScope)
     binder.bind(PostsRepository, InMemoryPostsRepository(), scope=SingletonScope)
     binder.bind(RelationshipRepository, InMemoryRelationshipRepository(), scope=SingletonScope)
+    binder.bind(WallRepository, InMemoryWallRepository(), scope=SingletonScope)
     binder.bind(Clock, RealClock(), scope=SingletonScope)
     binder.bind(QueryUserByUserName)
     binder.bind(QueryUserByID)
