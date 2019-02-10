@@ -1,32 +1,27 @@
 from unittest import TestCase
 
-from domain.relationship.query_relationships_by_followee_id import QueryRelationshipsByFolloweeID
-from domain.wall.projection import WallProjection
-from infrastructure.repositories.relationship_repository_in_memory import InMemoryRelationshipRepository
+from domain.posts.post import post_in
+from domain.users.exceptions import UnknownUser
+from domain.users.query_user_by_id import QueryUserByID
+from domain.wall.by_user_id import WallByUserID
+from domain.wall.query_wall_by_user_id import QueryWallByUserID
+from infrastructure.repositories.users_repository_in_memory import InMemoryUsersRepository
 from infrastructure.repositories.wall_repository_in_memory import InMemoryWallRepository
 from tests.fixtures.posts import maria_created_a_post
-from tests.fixtures.users import maria, bob_follows_maria, bob
+from tests.fixtures.users import maria, inexistent_user_id
 
 
-class TestWall(TestCase):
-    def test_should_see_own_posts_on_wall(self):
-        wall_repository = InMemoryWallRepository()
-        wall_projection = WallProjection(
-            wall_repository=wall_repository,
-            query_relationships_by_followee_id=QueryRelationshipsByFolloweeID(
-                InMemoryRelationshipRepository([bob_follows_maria()])))
+class TestQueryWallByUserID(TestCase):
+    def test_should_query_wall_of_a_given_user(self):
+        event = maria_created_a_post()
+        query = QueryWallByUserID(QueryUserByID(InMemoryUsersRepository([maria()])),
+                                  InMemoryWallRepository([(maria().ID, [event])]))
+        assert 1 == len(query.execute(WallByUserID(maria().ID)))
+        assert post_in(event) == query.execute(WallByUserID(maria().ID))[0]
 
-        wall_projection.handle(maria_created_a_post())
-
-        assert 1 == len(wall_repository.by_user_id(maria().ID))
-
-    def test_should_see_followee_posts_on_follower_wall(self):
-        wall_repository = InMemoryWallRepository()
-        wall_projection = WallProjection(
-            wall_repository=wall_repository,
-            query_relationships_by_followee_id=QueryRelationshipsByFolloweeID(
-                InMemoryRelationshipRepository([bob_follows_maria()])))
-
-        wall_projection.handle(maria_created_a_post())
-
-        assert 1 == len(wall_repository.by_user_id(bob().ID))
+    def test_should_throw_an_exception_if_user_does_not_exist(self):
+        event = maria_created_a_post()
+        query = QueryWallByUserID(QueryUserByID(InMemoryUsersRepository([maria()])),
+                                  InMemoryWallRepository([(maria().ID, [event])]))
+        with self.assertRaises(UnknownUser):
+            query.execute(WallByUserID(inexistent_user_id()))
