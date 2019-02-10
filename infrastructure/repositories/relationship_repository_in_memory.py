@@ -14,8 +14,8 @@ class InMemoryRelationshipRepository(RelationshipRepository):
         for relationship in initial_relationships:
             self.save(relationship)
 
-    def by_follower_id(self, followee_id: UserID) -> List[Relationship]:
-        return self._by_follower_id.get(followee_id.contents, [])
+    def by_follower_id(self, follower_id: UserID) -> List[Relationship]:
+        return self._by_follower_id.get(follower_id.contents, [])
 
     def by_followee_id(self, followee_id: UserID) -> List[Relationship]:
         return self._by_followee_id.get(followee_id.contents, [])

@@ -1,11 +1,8 @@
 from unittest import TestCase
 
-from typing import Union
-
 from domain.posts.create_post_command import CreatePost
 from domain.posts.exceptions import UnkownUserID
-from domain.posts.post import Post
-from domain.posts.post_created import PostCreated
+from domain.posts.post import post_in
 from domain.posts.post_creator import PostCreator
 from domain.posts.post_id import PostID
 from domain.users.query_user_by_id import QueryUserByID
@@ -13,10 +10,6 @@ from domain.users.user_id import UserID
 from infrastructure.repositories.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.time import a_perfect_day_and_time
 from tests.fixtures.users import maria
-
-
-def post_in(subject: Union[CreatePost, PostCreated]) -> Post:
-    return Post(user_id=subject.user_id, post_id=subject.post_id, text=subject.text, created_at=subject.created_at)
 
 
 class TestCreatePost(TestCase):

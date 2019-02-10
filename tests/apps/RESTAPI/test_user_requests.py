@@ -101,8 +101,6 @@ class TestRegistrationRequests(TestCase):
             "about" : "I love playing the chess and dancing."
         }""")).get_data(as_text=True))
 
-        self.client.post('/users/%s/timeline' % register_second_user_response['id'],
-                         json=json.loads("""{"text" : "Hello everyone. I'm Maria."}"""))
         follow_response = self.client.post("/followings", json=json.loads('{"followerId" : "%s","followeeId" : "%s"}' %
                                                                           (register_first_user_response['id'],
                                                                            register_second_user_response['id'])))
@@ -110,6 +108,9 @@ class TestRegistrationRequests(TestCase):
         followees_response = self.client.get("/followings/%s/followees" % register_first_user_response['id'])
 
         followees_json_response = json.loads(followees_response.get_data(as_text=True))
+
+        self.client.post('/users/%s/timeline' % register_second_user_response['id'],
+                         json=json.loads("""{"text" : "Hello everyone. I'm Maria."}"""))
 
         wall_response = self.client.get("/users/%s/wall" % register_first_user_response['id'])
 

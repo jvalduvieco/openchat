@@ -10,7 +10,7 @@ from domain.users.query_user_by_id import QueryUserByID
 from domain.users.query_user_by_username import QueryUserByUserName
 from domain.users.user_registrator import UserRegistrator
 from domain.users.users_repository import UsersRepository
-from domain.wall.wall_repository import WallRepository
+from domain.wall.repository import WallRepository
 from infrastructure.CommandBus.local_synchronous_command_bus import LocalSynchronousCommandBus
 from infrastructure.EventBus.local_synchronous_event_bus import LocalSynchronousEventBus
 from infrastructure.clock.real_clock import RealClock
@@ -24,6 +24,7 @@ def user(binder: Binder):
     binder.bind(UsersRepository, InMemoryUsersRepository(), scope=SingletonScope)
     binder.bind(PostsRepository, InMemoryPostsRepository(), scope=SingletonScope)
     binder.bind(RelationshipRepository, InMemoryRelationshipRepository(), scope=SingletonScope)
+    binder.bind(WallRepository, InMemoryWallRepository(), scope=SingletonScope)
     binder.bind(Clock, RealClock(), scope=SingletonScope)
     binder.bind(QueryUserByUserName)
     binder.bind(QueryUserByID)

@@ -1,4 +1,5 @@
 from domain.posts.post import Post
+from domain.posts.post_created import PostCreated
 from domain.posts.post_id import PostID
 from tests.fixtures.time import a_perfect_day_and_time, a_perfect_day_and_time_ten_minutes_after
 from tests.fixtures.users import maria, bob
@@ -17,3 +18,8 @@ def a_post_by_bob():
 def another_post_by_maria():
     return Post(PostID('966ff2dd-e839-44c0-adc9-cfc771e3cf13'), maria().ID, 'I\'ve invented something!',
                 a_perfect_day_and_time_ten_minutes_after())
+
+
+def maria_created_a_post():
+    return PostCreated(user_id=maria().ID, post_id=PostID('966ff2dd-e839-44c0-adc9-cfc771e3cf13'),
+                       text='Maria created a post', created_at=a_perfect_day_and_time())
