@@ -2,6 +2,8 @@ import logging
 from collections.abc import Iterable
 from typing import List, TypeVar, Callable
 
+import typing
+
 from domain.misc.EventBus import EventBus
 
 logger = logging.getLogger()
@@ -12,6 +14,13 @@ class LocalSynchronousEventBus(EventBus):
         self.subscribers = {}
 
     def subscribe(self, event_type: TypeVar, callback: Callable) -> None:
+        if isinstance(event_type, typing.List):
+            for type in event_type:
+                self.subscribe_one(type, callback)
+        else:
+            self.subscribe_one(event_type, callback)
+
+    def subscribe_one(self, event_type, callback):
         if event_type in self.subscribers:
             self.subscribers[event_type].append(callback)
         else:
