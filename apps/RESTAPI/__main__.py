@@ -31,9 +31,13 @@ def create_openchat_app(config=None, environment=None):
     return openchat
 
 
-if __name__ == "__main__":
+def main():
     config = {
         'SERVER_NAME': "%s:%s" % (os.environ.get('LISTEN', 'localhost'), os.environ.get('PORT', 8080)),
     }
     app = create_openchat_app(config=config, environment=os.environ.get('ENV', 'development'))
     app.run()
+
+
+if __name__ == "__main__":
+    main()
