@@ -1,5 +1,3 @@
-import json
-
 from flask import Blueprint, request
 
 from apps.RESTAPI.response_builders import to_multiple_user_response, to_multiple_post_response, \
@@ -66,8 +64,9 @@ def get_user_by_id(user_id, query: QueryUserByID):
 
 
 @openchat_controllers.route('/users', methods=['GET'])
+@return_json
 def get_all_users(query: QueryAllUsers):
-    return json.dumps(to_multiple_user_response(query.execute())), 200
+    return to_multiple_user_response(query.execute()), 200
 
 
 @openchat_controllers.route('/users/<user_id>/timeline', methods=['POST'])
@@ -100,6 +99,7 @@ def get_user_wall(query: QueryWallByUserID, user_id):
 
 
 @openchat_controllers.route('/followings', methods=['POST'])
+@return_json
 def followings_post(command_bus: CommandBus):
     client_request = request.json
     validate_client_request(client_request, ['followerId', 'followeeId'])

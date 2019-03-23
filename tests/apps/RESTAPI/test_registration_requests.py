@@ -1,4 +1,3 @@
-import json
 from unittest import TestCase
 
 from apps.RESTAPI.__main__ import create_openchat_app
@@ -11,13 +10,13 @@ class TestRegistrationRequests(TestCase):
         self.client = self.app.test_client()
 
     def test_can_register_a_user(self):
-        response = self.client.post('/users', json=json.loads("""{
-        "username" : "Alice",
-        "password" : "alki324d",
-        "about" : "I love playing the piano and travelling."
-    }"""))
+        response = self.client.post('/users', json={
+            "username": "Alice",
+            "password": "alki324d",
+            "about": "I love playing the piano and travelling."
+        })
 
-        json_response = json.loads(response.get_data(as_text=True))
+        json_response = response.get_json()
 
         self.assertEqual(201, response.status_code)
         self.assertEqual("Alice", json_response['username'])
@@ -25,9 +24,9 @@ class TestRegistrationRequests(TestCase):
         self.assertTrue(validate_uuid4_string(json_response['id']))
 
     def test_register_user_bad_parameters_results_in_bad_request(self):
-        response = self.client.post('/users', json=json.loads("""{}"""))
+        response = self.client.post('/users', json={})
 
-        json_response = json.loads(response.get_data(as_text=True))
+        json_response = response.get_json()
 
         self.assertEqual(400, response.status_code)
         self.assertIsNotNone(json_response['application_error'])

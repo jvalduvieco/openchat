@@ -1,4 +1,3 @@
-import json
 from unittest import TestCase
 
 from apps.RESTAPI.__main__ import create_openchat_app
@@ -11,18 +10,18 @@ class TestPostsRequests(TestCase):
         self.client = self.app.test_client()
 
     def test_can_create_a_new_post(self):
-        register_response = self.client.post('/users', json=json.loads("""{
-                "username" : "Alice",
-                "password" : "alki324d",
-                "about" : "I love playing the piano and travelling."
-            }"""))
+        register_response = self.client.post('/users', json={
+            "username": "Alice",
+            "password": "alki324d",
+            "about": "I love playing the piano and travelling."
+        })
 
-        registered_user = json.loads(register_response.get_data(as_text=True))
-        response = self.client.post('/users/%s/timeline' % registered_user['id'], json=json.loads("""{
-            "text" : "Hello everyone. I'm Alice."
-        }"""))
+        registered_user = register_response.get_json()
+        response = self.client.post('/users/%s/timeline' % registered_user['id'], json={
+            "text": "Hello everyone. I'm Alice."
+        })
 
-        json_response = json.loads(response.get_data(as_text=True))
+        json_response = response.get_json()
 
         self.assertEqual(201, response.status_code)
         self.assertEqual(registered_user['id'], json_response['userId'])
@@ -31,23 +30,22 @@ class TestPostsRequests(TestCase):
         self.assertTrue(validate_uuid4_string(json_response['postId']))
 
     def test_can_fetch_user_posts(self):
-        register_response = self.client.post('/users', json=json.loads("""{
-                "username" : "Alice",
-                "password" : "alki324d",
-                "about" : "I love playing the piano and travelling."
-            }"""))
+        register_response = self.client.post('/users', json={
+            "username": "Alice",
+            "password": "alki324d",
+            "about": "I love playing the piano and travelling."
+        })
 
-        registered_user = json.loads(register_response.get_data(as_text=True))
-        create_post_response = self.client.post('/users/%s/timeline' % registered_user['id'], json=json.loads("""{
-            "text" : "Hello everyone. I'm Alice."
-        }"""))
+        registered_user = register_response.get_json()
+        create_post_response = self.client.post('/users/%s/timeline' % registered_user['id'], json={
+            "text": "Hello everyone. I'm Alice."
+        })
 
-        create_post_json_response = json.loads(create_post_response.get_data(as_text=True))
+        create_post_json_response = create_post_response.get_json()
 
         fetch_post_response = self.client.get('/users/%s/timeline' % registered_user['id'])
 
-        fetch_post_json_response = json.loads(fetch_post_response.get_data(as_text=True))
-
+        fetch_post_json_response = fetch_post_response.get_json()
         self.assertEqual(201, register_response.status_code)
         self.assertEqual(201, create_post_response.status_code)
         self.assertEqual(200, fetch_post_response.status_code)

@@ -1,7 +1,8 @@
 import functools
+import json
 from typing import List, Callable
 
-from flask import jsonify
+from flask import Response
 from injector import Injector
 
 from domain.misc import CommandBus, EventBus
@@ -35,6 +36,11 @@ def return_json(view):
     @functools.wraps(view)
     def wrapped_view(**values):
         response, status = view(**values)
-        return jsonify(response), status
+        response = Response(
+            response=json.dumps(response),
+            status=status,
+            mimetype='application/json'
+        )
+        return response
 
     return wrapped_view
