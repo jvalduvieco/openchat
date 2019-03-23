@@ -8,7 +8,7 @@ from injector import Injector
 from apps.RESTAPI.command_handlers import user_command_handlers
 from apps.RESTAPI.controllers import openchat_controllers
 from apps.RESTAPI.dependency_injection_modules import user, core
-from apps.RESTAPI.error_handler import handle_invalid_usage
+from apps.RESTAPI.error_handler import handle_business_exception
 from apps.RESTAPI.event_handlers import user_event_handlers
 from apps.RESTAPI.tools import register_command_handlers, register_event_handlers
 from domain.misc import CommandBus, EventBus
@@ -27,7 +27,7 @@ def create_openchat_app(config=None, environment=None):
     register_command_handlers(injector, injector.get(CommandBus), injector.get(EventBus),
                               modules=[user_command_handlers])
     register_event_handlers(injector, injector.get(EventBus), modules=[user_event_handlers])
-    openchat.register_error_handler(ValueError, handle_invalid_usage)
+    openchat.register_error_handler(ValueError, handle_business_exception)
     return openchat
 
 
