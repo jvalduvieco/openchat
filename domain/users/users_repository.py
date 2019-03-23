@@ -1,4 +1,5 @@
 import abc
+from typing import List
 
 from domain.users.user import User
 from domain.users.user_id import UserID
@@ -19,5 +20,5 @@ class UsersRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def all(self):
+    def all(self) -> List[User]:
         pass
