@@ -11,6 +11,6 @@ class TestQueryAllUsers(TestCase):
 
         all_users = query_all_users.execute()
 
-        assert 2 == len(all_users)
-        assert maria() in all_users
-        assert bob() in all_users
+        self.assertEqual(2, len(all_users))
+        self.assertIn(maria(), all_users)
+        self.assertIn(bob(), all_users)

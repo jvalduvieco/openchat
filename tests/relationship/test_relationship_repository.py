@@ -17,9 +17,7 @@ class TestRelationshipRepository(TestCase):
 
         relationships = followers_repository.by_followee_id(a_relationship.followee_id)
 
-        assert 1 == len(relationships)
-        assert a_relationship.follower_id == relationships[0].follower_id
-        assert a_relationship.followee_id == relationships[0].followee_id
+        self.assertIn(a_relationship, relationships)
 
     @parameterized.expand([
         [InMemoryRelationshipRepository()]
@@ -30,6 +28,4 @@ class TestRelationshipRepository(TestCase):
 
         relationships = followers_repository.by_follower_id(a_relationship.follower_id)
 
-        assert 1 == len(relationships)
-        assert a_relationship.follower_id == relationships[0].follower_id
-        assert a_relationship.followee_id == relationships[0].followee_id
+        self.assertIn(a_relationship, relationships)

@@ -18,7 +18,7 @@ class TestWall(TestCase):
 
         wall_projection.handle(maria_created_a_post())
 
-        assert 1 == len(wall_repository.by_user_id(maria().ID))
+        self.assertEqual(1, len(wall_repository.by_user_id(maria().ID)))
 
     def test_should_see_followee_posts_on_follower_wall(self):
         wall_repository = InMemoryWallRepository()
@@ -29,4 +29,4 @@ class TestWall(TestCase):
 
         wall_projection.handle(maria_created_a_post())
 
-        assert 1 == len(wall_repository.by_user_id(bob().ID))
+        self.assertEqual(1, len(wall_repository.by_user_id(bob().ID)))

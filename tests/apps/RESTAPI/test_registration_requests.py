@@ -19,16 +19,16 @@ class TestRegistrationRequests(TestCase):
 
         json_response = json.loads(response.get_data(as_text=True))
 
-        assert 201 == response.status_code
-        assert "Alice" == json_response['username']
-        assert "I love playing the piano and travelling." == json_response['about']
-        assert validate_uuid4_string(json_response['id']) is True
+        self.assertEqual(201, response.status_code)
+        self.assertEqual("Alice", json_response['username'])
+        self.assertEqual("I love playing the piano and travelling.", json_response['about'])
+        self.assertTrue(validate_uuid4_string(json_response['id']))
 
     def test_register_user_bad_parameters_results_in_bad_request(self):
         response = self.client.post('/users', json=json.loads("""{}"""))
 
         json_response = json.loads(response.get_data(as_text=True))
 
-        assert 400 == response.status_code
-        assert json_response['application_error'] is not None
-        assert json_response['application_error']['status_code'] == 400
+        self.assertEqual(400, response.status_code)
+        self.assertIsNotNone(json_response['application_error'])
+        self.assertEqual(400, json_response['application_error']['status_code'])

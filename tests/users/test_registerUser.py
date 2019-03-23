@@ -14,11 +14,11 @@ class TestRegisterUser(TestCase):
 
         (a_registered_user, events) = user_registrator.execute(command)
 
-        assert a_registered_user.username == command.username
-        assert len(events) == 1
-        assert events[0].username == command.username
-        assert events[0].password == command.password
-        assert events[0].ID == command.ID
+        self.assertEqual(command.username, a_registered_user.username)
+        self.assertEqual(1, len(events))
+        self.assertEqual(command.username, events[0].username)
+        self.assertEqual(command.password, events[0].password)
+        self.assertEqual(command.ID, events[0].ID)
 
     def test_should_throw_an_exception_on_duplicate_username(self):
         user_registrator = UserRegistrator(QueryUserByUserName(InMemoryUsersRepository([maria()])))

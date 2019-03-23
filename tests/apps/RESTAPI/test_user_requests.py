@@ -22,11 +22,11 @@ class TestRegistrationRequests(TestCase):
         query_user_response = self.client.get('/users/%s' % register_json_response['id'])
         query_user_json_response = json.loads(register_response.get_data(as_text=True))
 
-        assert 200 == query_user_response.status_code
-        assert "Alice" == query_user_json_response['username']
-        assert "I love playing the piano and travelling." == query_user_json_response['about']
-        assert register_json_response['id'] == query_user_json_response['id']
-        assert validate_uuid4_string(query_user_json_response['id']) is True
+        self.assertEqual(200, query_user_response.status_code)
+        self.assertEqual("Alice", query_user_json_response['username'])
+        self.assertEqual("I love playing the piano and travelling.", query_user_json_response['about'])
+        self.assertEqual(register_json_response['id'], query_user_json_response['id'])
+        self.assertTrue(validate_uuid4_string(query_user_json_response['id']))
 
     def test_can_fetch_all_users(self):
         self.client.post('/users', json=json.loads("""{
@@ -43,8 +43,8 @@ class TestRegistrationRequests(TestCase):
         query_user_response = self.client.get('/users')
         query_user_json_response = json.loads(query_user_response.get_data(as_text=True))
 
-        assert 200 == query_user_response.status_code
-        assert len(query_user_json_response) == 2
+        self.assertEqual(200, query_user_response.status_code)
+        self.assertEqual(2, len(query_user_json_response))
 
     def test_users_can_follow_other_users(self):
         register_first_user_response = json.loads(self.client.post('/users', json=json.loads("""{
@@ -62,7 +62,7 @@ class TestRegistrationRequests(TestCase):
                                                                           (register_first_user_response['id'],
                                                                            register_second_user_response['id'])))
 
-        assert 201 == follow_response.status_code
+        self.assertEqual(201, follow_response.status_code)
 
     def test_can_fetch_followers(self):
         register_first_user_response = json.loads(self.client.post('/users', json=json.loads("""{
@@ -83,11 +83,11 @@ class TestRegistrationRequests(TestCase):
         followees_response = self.client.get("/followings/%s/followees" % register_first_user_response['id'])
 
         followees_json_response = json.loads(followees_response.get_data(as_text=True))
-        assert 201 == follow_response.status_code
-        assert 200 == followees_response.status_code
+        self.assertEqual(201, follow_response.status_code)
+        self.assertEqual(200, followees_response.status_code)
 
-        assert len(followees_json_response) == 1
-        assert followees_json_response[0]['id'] == register_second_user_response['id']
+        self.assertEqual(1, len(followees_json_response))
+        self.assertEqual(followees_json_response[0]['id'], register_second_user_response['id'])
 
     def test_can_fetch_the_wall(self):
         register_first_user_response = json.loads(self.client.post('/users', json=json.loads("""{
@@ -116,10 +116,10 @@ class TestRegistrationRequests(TestCase):
 
         wall_json_response = json.loads(wall_response.get_data(as_text=True))
 
-        assert 201 == follow_response.status_code
-        assert 200 == followees_response.status_code
-        assert 200 == wall_response.status_code
+        self.assertEqual(201, follow_response.status_code)
+        self.assertEqual(200, followees_response.status_code)
+        self.assertEqual(200, wall_response.status_code)
 
-        assert len(followees_json_response) == 1
-        assert followees_json_response[0]['id'] == register_second_user_response['id']
-        assert len(wall_json_response) == 1
+        self.assertEqual(1, len(followees_json_response))
+        self.assertEqual(followees_json_response[0]['id'], register_second_user_response['id'])
+        self.assertEqual(1, len(wall_json_response))

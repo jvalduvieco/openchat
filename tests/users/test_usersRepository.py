@@ -17,7 +17,7 @@ class TestUsersRepository(TestCase):
 
         user_from_repo = user_repository.by_username(a_user.username)
 
-        assert a_user == user_from_repo
+        self.assertEqual(a_user, user_from_repo)
 
     @parameterized.expand([
         [InMemoryUsersRepository()]
@@ -28,4 +28,4 @@ class TestUsersRepository(TestCase):
 
         user_from_repo = user_repository.by_id(a_user.ID)
 
-        assert a_user == user_from_repo
+        self.assertEqual(a_user, user_from_repo)
