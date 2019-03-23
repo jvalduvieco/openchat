@@ -24,11 +24,11 @@ class TestPostsRequests(TestCase):
 
         json_response = json.loads(response.get_data(as_text=True))
 
-        assert 201 == response.status_code
-        assert registered_user['id'] == json_response['userId']
-        assert type(json_response['text']) is str
-        assert type(json_response['dateTime']) is str
-        assert validate_uuid4_string(json_response['postId'])
+        self.assertEqual(201, response.status_code)
+        self.assertEqual(registered_user['id'], json_response['userId'])
+        self.assertIsInstance(json_response['text'], str)
+        self.assertIsInstance(json_response['dateTime'], str)
+        self.assertTrue(validate_uuid4_string(json_response['postId']))
 
     def test_can_fetch_user_posts(self):
         register_response = self.client.post('/users', json=json.loads("""{
@@ -48,11 +48,11 @@ class TestPostsRequests(TestCase):
 
         fetch_post_json_response = json.loads(fetch_post_response.get_data(as_text=True))
 
-        assert 201 == register_response.status_code
-        assert 201 == create_post_response.status_code
-        assert 200 == fetch_post_response.status_code
+        self.assertEqual(201, register_response.status_code)
+        self.assertEqual(201, create_post_response.status_code)
+        self.assertEqual(200, fetch_post_response.status_code)
 
-        assert 1 == len(fetch_post_json_response)
-        assert create_post_json_response['postId'] == fetch_post_json_response[0]['postId']
-        assert create_post_json_response['text'] == fetch_post_json_response[0]['text']
-        assert create_post_json_response['dateTime'] == fetch_post_json_response[0]['dateTime']
+        self.assertEqual(1, len(fetch_post_json_response))
+        self.assertEqual(create_post_json_response['postId'], fetch_post_json_response[0]['postId'])
+        self.assertEqual(create_post_json_response['text'], fetch_post_json_response[0]['text'])
+        self.assertEqual(create_post_json_response['dateTime'], fetch_post_json_response[0]['dateTime'])

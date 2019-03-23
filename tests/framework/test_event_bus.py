@@ -45,15 +45,17 @@ class TestLocalSynchronousEventBus(TestCase):
     @parameterized.expand([
         [LocalSynchronousEventBus()]
     ])
-    def test_should_call_all_subscribers_even_if_one_fails(self, event_bus: EventBus):
+    def test_should_call_all_subscribers_even_if_one_fails_and_a_log_should_be_written(self, event_bus: EventBus):
         handlers_called = []
-        event_bus.subscribe(ADummyEventHappened, lambda event: handlers_called.append(1))
-        event_bus.subscribe(ADummyEventHappened, lambda event: 1/0)
-        event_bus.subscribe(ADummyEventHappened, lambda event: handlers_called.append(2))
+        with self.assertLogs() as fake_logger:
+            event_bus.subscribe(ADummyEventHappened, lambda event: handlers_called.append(1))
+            event_bus.subscribe(ADummyEventHappened, lambda event: 1 / 0)
+            event_bus.subscribe(ADummyEventHappened, lambda event: handlers_called.append(2))
 
-        event_bus.publish(ADummyEventHappened('username'))
+            event_bus.publish(ADummyEventHappened('username'))
 
-        assert 2 == len(handlers_called)
+        self.assertEqual(2, len(handlers_called))
+        self.assertEqual(1, len(fake_logger.output))
 
     @parameterized.expand([
         [LocalSynchronousEventBus()]
@@ -64,4 +66,4 @@ class TestLocalSynchronousEventBus(TestCase):
 
         event_bus.publish([ADummyEventHappened('username'), ADummyEventHappened('username')])
 
-        assert 2 == len(handlers_called)
+        self.assertEqual(2, len(handlers_called))

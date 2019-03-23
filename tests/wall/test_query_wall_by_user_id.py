@@ -16,8 +16,8 @@ class TestQueryWallByUserID(TestCase):
         event = maria_created_a_post()
         query = QueryWallByUserID(QueryUserByID(InMemoryUsersRepository([maria()])),
                                   InMemoryWallRepository([(maria().ID, [event])]))
-        assert 1 == len(query.execute(WallByUserID(maria().ID)))
-        assert post_in(event) == query.execute(WallByUserID(maria().ID))[0]
+        self.assertEqual(1, len(query.execute(WallByUserID(maria().ID))))
+        self.assertEqual(post_in(event), query.execute(WallByUserID(maria().ID))[0])
 
     def test_should_throw_an_exception_if_user_does_not_exist(self):
         event = maria_created_a_post()

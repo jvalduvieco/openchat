@@ -7,7 +7,7 @@ class TestUserName(TestCase):
     def test_should_create_a_username(self):
         a_username = UserName('maria')
 
-        assert a_username.contents == 'maria'
+        self.assertEqual('maria', a_username.contents)
 
     def test_should_not_allow_username_with_spaces(self):
         with self.assertRaises(ValueError):

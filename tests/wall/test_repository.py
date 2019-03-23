@@ -20,5 +20,5 @@ class TestWallsRepository(TestCase):
 
         wall_from_repo = wall_repository.by_user_id(a_user.ID)
 
-        assert 1 == len(wall_from_repo)
-        assert post_in(event) == wall_from_repo[0]
+        self.assertEqual(1, len(wall_from_repo))
+        self.assertEqual(post_in(event), wall_from_repo[0])

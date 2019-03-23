@@ -19,12 +19,12 @@ class TestCreateRelationship(TestCase):
 
         new_relationship, events = relationship_creator.execute(command)
 
-        assert command.follower_id == new_relationship.follower_id
-        assert command.followee_id == new_relationship.followee_id
-        assert len(events) == 1
-        assert events[0].follower_id == command.follower_id
-        assert events[0].followee_id == command.followee_id
-        assert events[0].timestamp == a_perfect_day_and_time()
+        self.assertEqual(command.follower_id, new_relationship.follower_id)
+        self.assertEqual(command.followee_id, new_relationship.followee_id)
+        self.assertEqual(1, len(events))
+        self.assertEqual(command.follower_id, events[0].follower_id)
+        self.assertEqual(command.followee_id, events[0].followee_id)
+        self.assertEqual(a_perfect_day_and_time(), events[0].timestamp)
 
     def test_should_throw_an_exception_on_inexistent_follower(self):
         command = CreateRelationship(follower_id=UserID(inexistent_user_id()), followee_id=maria().ID)
