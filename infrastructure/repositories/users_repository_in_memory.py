@@ -1,3 +1,5 @@
+from typing import List
+
 from domain.users.user import User
 from domain.users.user_id import UserID
 from domain.users.user_name import UserName
@@ -23,5 +25,5 @@ class InMemoryUsersRepository(UsersRepository):
         self.users_by_username[user.username.contents] = user
         self.users_by_id[user.ID.contents.__str__()] = user
 
-    def all(self):
+    def all(self) -> List[User]:
         return [user for (key, user) in self.users_by_id.items()]
