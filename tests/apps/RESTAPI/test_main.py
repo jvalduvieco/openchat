@@ -14,7 +14,7 @@ class TestLoginRequests(TestCase):
 
         main()
 
-        print(mock_method.call_args_list)
-        assert mock_method.called
-        assert len(mock_method.call_args_list) == 1
-        assert mock_method.call_args_list[0][1] == {'config': {'SERVER_NAME': '6.6.6.6:1337'}, 'environment': 'test'}
+        self.assertTrue(mock_method.called)
+        self.assertEqual(1, len(mock_method.call_args_list))
+        self.assertEqual({'config': {'SERVER_NAME': '6.6.6.6:1337'}, 'environment': 'test'},
+                         mock_method.call_args_list[0][1])

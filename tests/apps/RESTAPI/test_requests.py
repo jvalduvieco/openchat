@@ -11,8 +11,8 @@ class TestRegistrationRequests(TestCase):
 
     def test_should_return_bar_request_on_invalid_body_format(self):
         error_response = self.client.post('/users', json=json.loads("""[]"""))
-        assert 400 == error_response.status_code
+        self.assertEqual(400, error_response.status_code)
 
     def test_should_return_not_found_on_unexistent_resource(self):
         error_response = self.client.post('/i_dont_exist', json=json.loads("""[]"""))
-        assert 404 == error_response.status_code
+        self.assertEqual(404, error_response.status_code)

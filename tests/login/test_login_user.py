@@ -21,10 +21,10 @@ class TestLoginUser(TestCase):
 
             entity, events = user_login_by_username_and_password.execute(command)
 
-            assert entity is None
-            assert len(events) == 1
-            assert events[0].username == command.username
-            assert events[0].timestamp == a_perfect_day_and_time()
+            self.assertIsNone(entity)
+            self.assertEqual(1, len(events))
+            self.assertEqual(command.username, events[0].username)
+            self.assertEqual(a_perfect_day_and_time(), events[0].timestamp)
 
         except ValueError as err:
             self.fail("Unexpected exception raised: %s" % err)

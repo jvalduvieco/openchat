@@ -6,10 +6,9 @@ from domain.posts.post import post_in
 from domain.posts.post_creator import PostCreator
 from domain.posts.post_id import PostID
 from domain.users.query_user_by_id import QueryUserByID
-from domain.users.user_id import UserID
 from infrastructure.repositories.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.time import a_perfect_day_and_time
-from tests.fixtures.users import maria
+from tests.fixtures.users import maria, inexistent_user_id
 
 
 class TestCreatePost(TestCase):
@@ -25,7 +24,7 @@ class TestCreatePost(TestCase):
 
     def test_should_throw_an_exception_on_inexistent_user(self):
         command = CreatePost(post_id=PostID(),
-                             user_id=UserID('fc673127-c5b9-4128-9015-2bbc31163df1'),
+                             user_id=inexistent_user_id(),
                              text='',
                              created_at=a_perfect_day_and_time())
 

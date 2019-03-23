@@ -19,8 +19,8 @@ class TestCreatePost(TestCase):
 
         post_list = posts_by_user_id.execute(query)
 
-        assert 1 == len(post_list)
-        assert a_post_by_maria() in post_list
+        self.assertEqual(1, len(post_list))
+        self.assertIn(a_post_by_maria(), post_list)
 
     def test_should_get_a_list_of_posts_by_user_id_multiple_posts(self):
         query = PostsByUserID(user_id=maria().ID)
@@ -30,9 +30,9 @@ class TestCreatePost(TestCase):
 
         post_list = posts_by_user_id.execute(query)
 
-        assert 2 == len(post_list)
-        assert a_post_by_maria() in post_list
-        assert another_post_by_maria() in post_list
+        self.assertEqual(2, len(post_list))
+        self.assertIn(a_post_by_maria(), post_list)
+        self.assertIn(another_post_by_maria(), post_list)
 
     def test_should_throw_an_exception_if_user_does_not_exist(self):
         query = PostsByUserID(user_id=inexistent_user_id())
