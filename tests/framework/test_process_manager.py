@@ -145,15 +145,15 @@ class TestProcessManager(TestCase):
                                                                 self.event_bus))
 
     def test_process_managers_are_created_by_an_event(self):
-        an_event = AnEventThatCreatesAProcessManagerHappened(someData='username', some_very_important_id='3354')
+        an_event = AnEventThatCreatesAProcessManagerHappened(some_data='username', some_very_important_id='3354')
         self.event_bus.publish([an_event])
         sut_state = self.state_repository.by_id(ProcessManagerSUT.get_id(an_event))
         self.assertIn('AnEventThatCreatesAProcessManagerHappened', sut_state.received_events)
         self.assertEqual(1, sut_state.a_counter)
 
     def test_process_managers_have_internal_state_that_is_preserved_across_events(self):
-        an_event = AnEventThatCreatesAProcessManagerHappened(someData='username', some_very_important_id='3354')
-        another_event = AnEventThatIsVeryImportantHappened(someData='username', some_very_important_id='3354')
+        an_event = AnEventThatCreatesAProcessManagerHappened(some_data='username', some_very_important_id='3354')
+        another_event = AnEventThatIsVeryImportantHappened(some_data='username', some_very_important_id='3354')
         self.event_bus.publish([an_event, another_event])
         sut_state = self.state_repository.by_id(ProcessManagerSUT.get_id(an_event))
         self.assertIn('AnEventThatCreatesAProcessManagerHappened', sut_state.received_events)
