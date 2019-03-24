@@ -1,9 +1,8 @@
 from typing import List
 
+from domain.users.adapters import UsersRepository
 from domain.users.user import User
-from domain.users.user_id import UserID
-from domain.users.user_name import UserName
-from domain.users.users_repository import UsersRepository
+from domain.users.value_objects import UserID, UserName
 
 
 class InMemoryUsersRepository(UsersRepository):

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from domain.users.password import Password
+from domain.users.value_objects import Password
 
 
 class TestPassword(TestCase):

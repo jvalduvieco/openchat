@@ -2,10 +2,10 @@ import datetime
 from dataclasses import dataclass
 from typing import Union
 
-from domain.posts.create_post_command import CreatePost
-from domain.posts.post_created import PostCreated
-from domain.posts.post_id import PostID
-from domain.users.user_id import UserID
+from domain.posts.commands import CreatePost
+from domain.posts.events import PostCreated
+from domain.posts.value_objects import PostID
+from domain.users.value_objects import UserID
 
 
 @dataclass(frozen=True)

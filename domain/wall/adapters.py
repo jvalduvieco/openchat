@@ -1,9 +1,9 @@
 import abc
 from typing import List
 
+from domain.posts.events import PostCreated
 from domain.posts.post import Post
-from domain.posts.post_created import PostCreated
-from domain.users.user_id import UserID
+from domain.users.value_objects import UserID
 
 
 class WallRepository(abc.ABC):

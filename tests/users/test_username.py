@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from domain.users.user_name import UserName
+from domain.users.value_objects import UserName
 
 
 class TestUserName(TestCase):

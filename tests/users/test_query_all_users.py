@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from domain.users.query_all_users import QueryAllUsers
+from domain.users.services import QueryAllUsers
 from infrastructure.repositories.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.users import maria, bob
 

@@ -1,8 +1,6 @@
 from dataclasses import dataclass
 
-from domain.users.password import Password
-from domain.users.user_id import UserID
-from domain.users.user_name import UserName
+from domain.users.value_objects import Password, UserID, UserName
 
 
 @dataclass(frozen=True)

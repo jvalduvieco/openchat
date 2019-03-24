@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from domain.relationship.relationship import Relationship
-from domain.users.user_id import UserID
+from domain.users.value_objects import UserID
 
 
 class TestRelationship(TestCase):

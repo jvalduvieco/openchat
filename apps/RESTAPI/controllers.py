@@ -4,24 +4,21 @@ from apps.RESTAPI.response_builders import to_multiple_user_response, to_multipl
     to_single_user_response, \
     to_single_post_response
 from apps.RESTAPI.tools import validate_client_request, return_json
-from domain.login.login_user_command import LoginUser
+from domain.login.commands import LoginUser
 from domain.misc import CommandBus
 from domain.misc.clock import Clock
-from domain.posts.create_post_command import CreatePost
-from domain.posts.post_id import PostID
-from domain.posts.posts_by_user_id_query import PostsByUserID
-from domain.posts.query_posts_by_user_id import QueryPostByUserID
-from domain.relationship.create_relationship import CreateRelationship
-from domain.relationship.query_relationships_by_follower_id import QueryRelationshipsByFollowerID
-from domain.users.password import Password
-from domain.users.query_all_users import QueryAllUsers
-from domain.users.query_user_by_id import QueryUserByID
-from domain.users.query_user_by_username import QueryUserByUserName
-from domain.users.register_user_command import RegisterUser
-from domain.users.user_id import UserID
-from domain.users.user_name import UserName
-from domain.wall.by_user_id import WallByUserID
-from domain.wall.query_wall_by_user_id import QueryWallByUserID
+from domain.posts.commands import CreatePost
+from domain.posts.queries import PostsByUserID
+from domain.posts.services import QueryPostByUserID
+from domain.posts.value_objects import PostID
+from domain.relationship.commands import CreateRelationship
+from domain.relationship.services import QueryRelationshipsByFollowerID
+from domain.services.query_user_by_username import QueryUserByUserName
+from domain.users.commands import RegisterUser
+from domain.users.services import QueryAllUsers, QueryUserByID
+from domain.users.value_objects import Password, UserID, UserName
+from domain.wall.queries import WallByUserID
+from domain.wall.services import QueryWallByUserID
 
 openchat_controllers = Blueprint('openchat_controllers', __name__)
 

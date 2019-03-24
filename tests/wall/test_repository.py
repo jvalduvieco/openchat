@@ -3,7 +3,7 @@ from unittest import TestCase
 from parameterized import parameterized
 
 from domain.posts.post import post_in
-from domain.wall.repository import WallRepository
+from domain.wall.adapters import WallRepository
 from infrastructure.repositories.wall_repository_in_memory import InMemoryWallRepository
 from tests.fixtures.posts import maria_created_a_post
 from tests.fixtures.users import maria

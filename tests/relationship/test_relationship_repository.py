@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from parameterized import parameterized
 
-from domain.relationship.relationship_repository import RelationshipRepository
+from domain.relationship.adapters import RelationshipRepository
 from infrastructure.repositories.relationship_repository_in_memory import InMemoryRelationshipRepository
 from tests.fixtures.users import bob_follows_maria
 

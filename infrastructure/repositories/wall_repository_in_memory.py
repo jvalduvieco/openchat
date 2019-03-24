@@ -1,9 +1,9 @@
 from typing import List, Tuple
 
+from domain.posts.events import PostCreated
 from domain.posts.post import Post, post_in
-from domain.posts.post_created import PostCreated
-from domain.users.user_id import UserID
-from domain.wall.repository import WallRepository
+from domain.users.value_objects import UserID
+from domain.wall.adapters import WallRepository
 
 
 class InMemoryWallRepository(WallRepository):

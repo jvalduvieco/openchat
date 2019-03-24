@@ -1,8 +1,8 @@
 from injector import inject
 
+from domain.users.adapters import UsersRepository
 from domain.users.user import User
-from domain.users.user_name import UserName
-from domain.users.users_repository import UsersRepository
+from domain.users.value_objects import UserName
 
 
 class QueryUserByUserName(object):

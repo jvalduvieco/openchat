@@ -1,8 +1,8 @@
 from injector import inject
 
-from domain.posts.post_created import PostCreated
-from domain.relationship.query_relationships_by_followee_id import QueryRelationshipsByFolloweeID
-from domain.wall.repository import WallRepository
+from domain.posts.events import PostCreated
+from domain.relationship.services import QueryRelationshipsByFolloweeID
+from domain.wall.adapters import WallRepository
 
 
 class WallProjection(object):

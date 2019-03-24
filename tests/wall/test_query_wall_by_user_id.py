@@ -2,9 +2,9 @@ from unittest import TestCase
 
 from domain.posts.post import post_in
 from domain.users.exceptions import UnknownUser
-from domain.users.query_user_by_id import QueryUserByID
-from domain.wall.by_user_id import WallByUserID
-from domain.wall.query_wall_by_user_id import QueryWallByUserID
+from domain.users.services import QueryUserByID
+from domain.wall.queries import WallByUserID
+from domain.wall.services import QueryWallByUserID
 from infrastructure.repositories.users_repository_in_memory import InMemoryUsersRepository
 from infrastructure.repositories.wall_repository_in_memory import InMemoryWallRepository
 from tests.fixtures.posts import maria_created_a_post

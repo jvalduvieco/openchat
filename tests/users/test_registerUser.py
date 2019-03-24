@@ -1,8 +1,8 @@
 from unittest import TestCase
 
+from domain.services.query_user_by_username import QueryUserByUserName
 from domain.users.exceptions import DuplicatedUserName
-from domain.users.query_user_by_username import QueryUserByUserName
-from domain.users.user_registrator import UserRegistrator
+from domain.users.services import UserRegistrator
 from infrastructure.repositories.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.users import create_maria, maria
 

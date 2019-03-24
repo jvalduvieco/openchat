@@ -1,17 +1,17 @@
 from injector import Injector
 
-from domain.login.login_by_username_and_password import UserLoginByUserNameAndPassword
-from domain.login.login_user_command import LoginUser
+from domain.login.commands import LoginUser
+from domain.login.services import UserLoginByUserNameAndPassword
 from domain.misc import CommandBus, EventBus
-from domain.posts.create_post_command import CreatePost
-from domain.posts.post_creator import PostCreator
-from domain.posts.posts_repository import PostsRepository
-from domain.relationship.create_relationship import CreateRelationship
-from domain.relationship.relationship_creator import RelationshipCreator
-from domain.relationship.relationship_repository import RelationshipRepository
-from domain.users.register_user_command import RegisterUser
-from domain.users.user_registrator import UserRegistrator
-from domain.users.users_repository import UsersRepository
+from domain.posts.adapters import PostsRepository
+from domain.posts.commands import CreatePost
+from domain.posts.services import PostCreator
+from domain.relationship.adapters import RelationshipRepository
+from domain.relationship.commands import CreateRelationship
+from domain.relationship.services import RelationshipCreator
+from domain.users.adapters import UsersRepository
+from domain.users.commands import RegisterUser
+from domain.users.services import UserRegistrator
 from infrastructure.CommandBus.local_command_handler import build_local_command_handler
 
 

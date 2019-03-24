@@ -2,11 +2,11 @@ from typing import Tuple, List
 
 from injector import inject
 
-from domain.login.login_user_command import LoginUser
-from domain.login.user_signed_in import UserSignedIn
+from domain.login.commands import LoginUser
+from domain.login.events import UserSignedIn
 from domain.misc.clock import Clock
+from domain.services.query_user_by_username import QueryUserByUserName
 from domain.users.exceptions import UnknownUser, InvalidCredentials
-from domain.users.query_user_by_username import QueryUserByUserName
 
 
 class UserLoginByUserNameAndPassword(object):

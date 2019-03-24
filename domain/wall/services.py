@@ -1,9 +1,9 @@
 from injector import inject
 
 from domain.users.exceptions import UnknownUser
-from domain.users.query_user_by_id import QueryUserByID
-from domain.wall.by_user_id import WallByUserID
-from domain.wall.repository import WallRepository
+from domain.users.services import QueryUserByID
+from domain.wall.adapters import WallRepository
+from domain.wall.queries import WallByUserID
 
 
 class QueryWallByUserID(object):

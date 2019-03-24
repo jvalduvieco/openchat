@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from domain.relationship.query_relationships_by_followee_id import QueryRelationshipsByFolloweeID
-from domain.wall.projection import WallProjection
+from domain.relationship.services import QueryRelationshipsByFolloweeID
+from domain.wall.projections import WallProjection
 from infrastructure.repositories.relationship_repository_in_memory import InMemoryRelationshipRepository
 from infrastructure.repositories.wall_repository_in_memory import InMemoryWallRepository
 from tests.fixtures.posts import maria_created_a_post

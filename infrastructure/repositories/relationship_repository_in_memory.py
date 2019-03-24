@@ -1,8 +1,8 @@
 from typing import List
 
+from domain.relationship.adapters import RelationshipRepository
 from domain.relationship.relationship import Relationship
-from domain.relationship.relationship_repository import RelationshipRepository
-from domain.users.user_id import UserID
+from domain.users.value_objects import UserID
 
 
 class InMemoryRelationshipRepository(RelationshipRepository):

@@ -1,8 +1,8 @@
 from injector import Injector
 
 from domain.misc import EventBus
-from domain.posts.post_created import PostCreated
-from domain.wall.projection import WallProjection
+from domain.posts.events import PostCreated
+from domain.wall.projections import WallProjection
 from infrastructure.EventBus.projection_event_handler import build_projection_event_handler
 
 

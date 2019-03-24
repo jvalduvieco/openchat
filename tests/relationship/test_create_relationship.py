@@ -1,10 +1,10 @@
 from unittest import TestCase
 
-from domain.relationship.create_relationship import CreateRelationship
-from domain.relationship.relationship_creator import RelationshipCreator
+from domain.relationship.commands import CreateRelationship
+from domain.relationship.services import RelationshipCreator
 from domain.users.exceptions import UnknownUser
-from domain.users.query_user_by_id import QueryUserByID
-from domain.users.user_id import UserID
+from domain.users.services import QueryUserByID
+from domain.users.value_objects import UserID
 from infrastructure.clock.fake_clock import FakeClock
 from infrastructure.repositories.users_repository_in_memory import InMemoryUsersRepository
 from tests.fixtures.time import a_perfect_day_and_time
