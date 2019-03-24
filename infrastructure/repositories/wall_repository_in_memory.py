@@ -15,7 +15,7 @@ class InMemoryWallRepository(WallRepository):
             [self.save(user, event) for event in events]
 
     def by_user_id(self, user_id: UserID) -> List[Post]:
-        return self.wall_by_user_id.get(user_id.contents.__str__(), None) or []
+        return self.wall_by_user_id.get(user_id.contents.__str__(), [])
 
     def save(self, user_id: UserID, event: PostCreated) -> None:
         key = user_id.contents.__str__()
